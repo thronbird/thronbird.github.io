@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/15/mybatis自定义TypeHandler转换null值/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/05/15/mybatis自定义TypeHandler转换null值/" itemprop="url">mybatis自定义TypeHandler转换null值为空字符串</a></h1>
         
 
         <div class="post-meta">
@@ -300,9 +300,8 @@
       
         
           
-          title: mybatis自定义TypeHandler转换null值为空字符串
-背景目前接手的一个新项目中生成报表需求中，读取数据库数据之后的非常多String类型的字段，在写入csv报表的时候如果字段是null值 会默认显示为null，显示字符串null在报表中显然不合适
-考虑可以在sql查询时
+          背景目前接手的一个新项目中生成报表需求中，读取数据库数据之后的非常多String类型的字段，在写入csv报表的时候如果字段是null值 会默认显示为null，显示字符串null在报表中显然不合适
+考虑可以在sql查询时使用ifnull函数，但此类型字段过多，写查询语句太过繁琐因此想到自定义一个typ
           ...
           <!--noindex-->
           <div class="post-button text-center">
