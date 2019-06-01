@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： Rigidity:  What is bad code:If you modify something,">
+<meta name="description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： In a statically typed language, like Java, this mean">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Clean Architectur 读书笔记">
 <meta property="og:url" content="http://yoursite.com/2018/10/31/Clean Architecture 读书笔记/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： Rigidity:  What is bad code:If you modify something,">
+<meta property="og:description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： In a statically typed language, like Java, this mean">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-26T16:32:50.809Z">
+<meta property="og:updated_time" content="2019-05-26T17:21:01.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clean Architectur 读书笔记">
-<meta name="twitter:description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： Rigidity:  What is bad code:If you modify something,">
+<meta name="twitter:description" content="看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容 （链接：https://www.youtube.com/watch?v=TMuno5RZNeE&amp;amp;t=2880s） 一些观点很有参考价值： In a statically typed language, like Java, this mean">
 
 
 
@@ -302,6 +302,9 @@
         <p>看了youtube上bob大叔在yale的演讲，和想象中的标准闷骚码农不同，bob叔是个很风趣的人，还有点毒舌，哈哈，内容大体就是这本书前几章的内容</p>
 <p>（链接：<a href="https://www.youtube.com/watch?v=TMuno5RZNeE&amp;t=2880s）" target="_blank" rel="noopener">https://www.youtube.com/watch?v=TMuno5RZNeE&amp;t=2880s）</a></p>
 <p>一些观点很有参考价值：</p>
+<p>In a statically typed language, like Java, this means that the use, import, and include statements should refer only to source modules containing interfaces, abstract classes, or some other kind of abstract declaration. Nothing concrete should be depended on.</p>
+<p>Part of the art of developing a software architecture is carefully separating those policies from one another, and regrouping them based on the ways that they change.Policies that change for the same reasons, and at the same times, are at the same level and belong together in the same component. Policies that change for different reasons, or at different times, are at different levels and should be separated into different components.</p>
+<p> Divide our application into business rules and plugins.</p>
 <p>Rigidity:  What is bad code:If you modify something, you break something else; You must modify massive amounts of other code to come back to consistency with this modification.That is rigid code that has dependencies that snake out in so many directions that you cannot make isolated change without change everything around it;</p>
 <p>Fragility：Change one thing leads to error in another spot. good code are copuled with bad code and cannot be reused. </p>
 <p>吐槽OO：</p>
@@ -340,8 +343,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/15/mybatis自定义TypeHandler转换null值/" rel="prev" title="mybatis自定义TypeHandler转换null值为空字符串">
-                mybatis自定义TypeHandler转换null值为空字符串 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/16/Apollo实现@ConfigurationProperties配置刷新的另一种方式/" rel="prev" title="Apollo实现@ConfigurationProperties配置刷新的另一种方式">
+                Apollo实现@ConfigurationProperties配置刷新的另一种方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -410,7 +413,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
