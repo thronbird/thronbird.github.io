@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="内存划分线程私有：虚拟机栈|本地方法栈(hotspot不做区分)==》局部变量表|操作数栈|动态链接|返回地址 程序计数器==》由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各条线程之间计数器互">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解 JVM">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/深入理解java虚拟机笔记/index.html">
+<meta property="og:site_name" content="thronbird&#39;s blog">
+<meta property="og:description" content="内存划分线程私有：虚拟机栈|本地方法栈(hotspot不做区分)==》局部变量表|操作数栈|动态链接|返回地址 程序计数器==》由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各条线程之间计数器互">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5c0t4bvj30by0mq0z7.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5c0p5xwj30os0b50yg.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5bzmx6uj30au08jac3.jpg">
+<meta property="og:image" content="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5bzotz0j30eu08pdiy.jpg">
+<meta property="og:updated_time" content="2019-07-03T17:17:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解 JVM">
+<meta name="twitter:description" content="内存划分线程私有：虚拟机栈|本地方法栈(hotspot不做区分)==》局部变量表|操作数栈|动态链接|返回地址 程序计数器==》由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各条线程之间计数器互">
+<meta name="twitter:image" content="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5c0t4bvj30by0mq0z7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/深入理解java虚拟机笔记/">
+
+
+
+
+
+  <title>深入理解 JVM | thronbird's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thronbird's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/深入理解java虚拟机笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thronbird">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thronbird's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解 JVM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:27:03+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="内存划分"><a href="#内存划分" class="headerlink" title="内存划分"></a>内存划分</h2><h3 id="线程私有："><a href="#线程私有：" class="headerlink" title="线程私有："></a>线程私有：</h3><p><strong>虚拟机栈|本地方法栈(hotspot不做区分)</strong>==》局部变量表|操作数栈|动态链接|返回地址</p>
+<p><strong>程序计数器</strong>==》由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器（对于多核处理器来说是一个内核）都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要一个独立的程序计数器，各条线程之间计数器互不影响，独立存储。</p>
+<h3 id="线程共享（需要回收）："><a href="#线程共享（需要回收）：" class="headerlink" title="线程共享（需要回收）："></a>线程共享（需要回收）：</h3><p><strong>永久代|方法区</strong>==》Class文件中的版本、字段、方法、接口、常量池（符号引用|直接引用）等描述信息、运行时常量池（String.intern() ..）{</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"dsadsa"</span>;</span><br><span class="line">String b = <span class="keyword">new</span> String(<span class="string">"xzzz"</span>);</span><br><span class="line">b.intern();</span><br></pre></td></tr></table></figure>
+<p>这中间，”dsadsa”会在编译期进入常量池，”xzzz” 会在运行期进入运行时常量池。</p>
+<p><strong>堆</strong>==》新生代|老年代==&gt;对象实例|数组分配内存</p>
+<p><strong>直接内存</strong>==》目前主要是NIO 分配堆外内存 缓冲区</p>
+<h2 id="HOTSPOT运行机制："><a href="#HOTSPOT运行机制：" class="headerlink" title="HOTSPOT运行机制："></a>HOTSPOT运行机制：</h2><h3 id="对象创建"><a href="#对象创建" class="headerlink" title="对象创建"></a>对象创建</h3><pre><code>虚拟机遇到一条new指令时，首先将去检查这个指令的参数是否能在常量池中定位到一个类的符号引用，并且检查这个符号引用代表的类是否已被加载、解析和初始过。如果没有，那必须先执行相应的类加载过程。
+</code></pre><p>在Java语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成的，这种策略虽然会令类加载时稍微增加一些性能开销，但是会为Java应用程序提供高度的灵活性，Java里天生可以动态扩展的语言性就是依赖运行期动态加载和动态连接这个特点实现的。例如，如果编写一个面向接口的应用程序，可以等到运行时再指定其实际的实现类；</p>
+<p><img src="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5c0t4bvj30by0mq0z7.jpg" alt></p>
+<p>如果内存规整可以使用指针碰撞 如果不规整则使用空闲列表 给对象分配内多个线程共享内存给对象分配坑定会遇到线程安全问题，类似多个线程减库存，，因此方案如下：</p>
+<ol>
+<li>线程同步，这样创建对象的效率大打折扣</li>
+<li>TLAB 本地线程分配缓冲：先给每个线程预留一部分内存做分配，不够在同步</li>
+</ol>
+<p>对象初始化值 布尔类型为false 引用为null int 为0</p>
+<h3 id="对象构造："><a href="#对象构造：" class="headerlink" title="对象构造："></a>对象构造：</h3><p>object=headder+instance data+padding </p>
+<p>对象头(markword +类型指针+数组长度(如果对象是数组的话)) + 对象体+padding(对象体补充到8字节整数倍)</p>
+<p><img src="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5c0p5xwj30os0b50yg.jpg" alt></p>
+<h3 id="对象回收机制："><a href="#对象回收机制：" class="headerlink" title="对象回收机制："></a>对象回收机制：</h3><p>可达性算法：GC Roots的对象包括下面几种：</p>
+<ul>
+<li><em>虚拟机栈（栈帧中的本地变量表）中引用的对象。</em></li>
+<li><em>本地方法栈中JNI（即一般说的Native方法）引用的对象。</em></li>
+<li><em>方法区中类静态属性引用的对象、常量引用的对象。</em></li>
+</ul>
+<p>注：如果是软|弱|虚引用对象则在GC发生时也可回收</p>
+<p>标记清除算法-缺陷：效率问题|空间问题（不连续碎片 也容易触发垃圾回收）</p>
+<p>==》复制算法</p>
+<p><strong>分成两块内存</strong>:分配对象在其中一块儿，标记清除之后复制剩下的对象到另一块儿（缺点：内存利用率太低）</p>
+<p><strong>==》分成三块内存</strong>:分成Eden区（80%） S0区 S1区（20%）</p>
+<p>Eden+S0清理之后剩余对象复制到S1 然后下一次清理Eden+S1（不够分配则进入老年代）：SuvivorRate=8  xms10 xmn10 (=Eden区8，S0 S1为1)==&gt;分配 2、2、2、4 则分配4的时候Eden和S1都不够因此触发minor GC，222被移动到老年代，4分配到Eden。</p>
+<p>==&gt;G1算法</p>
+<p>新生代Minor GC \ 老年代Full GC 时间相差10倍左右</p>
+<h3 id="逃逸分析-栈上分配"><a href="#逃逸分析-栈上分配" class="headerlink" title="逃逸分析-栈上分配"></a>逃逸分析-栈上分配</h3><pre><code>栈上分配的对象会随着出栈直接释放内存也不用回收处理，但是需要分析对象是不是仅在方法体内部有效（没有引用外部对象）
+</code></pre><h2 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h2><p>a=0 a=1 c=a</p>
+<p>这段程序cpu执行的时候可能a=1还没线程缓存刷新到主内存，那么c取出来的a的值就还是0。</p>
+<p>单线程下有数据依赖性（as if serial）保证，多线程就没法保证了，因为多线程下，在单线程看来可以保证依赖性在多线程下就没法保证了。这个时候只能做同步处理，比如先写后读。<img src="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5bzmx6uj30au08jac3.jpg" alt></p>
+<h3 id="锁的内存语义"><a href="#锁的内存语义" class="headerlink" title="锁的内存语义"></a>锁的内存语义</h3><p>synchronized 代码块的时候：</p>
+<p>线程1、2（由监视器规则保证happens before）对同一值做加锁写操作</p>
+<ul>
+<li>线程1进同步代码块–获取锁- 从主内存中取出value然后+1放入自己的本地内存</li>
+<li>线程1出同步代码块–释放锁-将自己本地内存alue刷新到主内存中-同时通知其他线程（同步共享变量到主内存中）</li>
+<li>线程2进同步代码块–清除自己缓存的value从主内存中取出value</li>
+</ul>
+<p><img src="https://tvax1.sinaimg.cn/large/005BYqpggy1g4n5bzotz0j30eu08pdiy.jpg" alt></p>
+<h3 id="Volatile内存语义："><a href="#Volatile内存语义：" class="headerlink" title="Volatile内存语义："></a>Volatile内存语义：</h3><p>可见性保证的原理：</p>
+<ul>
+<li>当写入一个volatile变量的时候，Java内存模型会把该线程对应的本地内存中的共享变量值刷新到主内存中。</li>
+<li>当读一个volatile变量的时候，Java内存会把当前线程对应的本地内存中的共享变量置为无效然后从主内存中读取共享变量。</li>
+</ul>
+<h3 id="final内存语义："><a href="#final内存语义：" class="headerlink" title="final内存语义："></a>final内存语义：</h3><p>写final域操作禁止重排序到构造方法之外保证了读取final域坑定是已经初始化好了的，实现方式是利用storestore内存屏障保证变量不逃逸。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/03/JAVA字节码执行引擎/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/03/数据库缓存一致性总结/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">thronbird</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存划分"><span class="nav-number">1.</span> <span class="nav-text">内存划分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程私有："><span class="nav-number">1.1.</span> <span class="nav-text">线程私有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程共享（需要回收）："><span class="nav-number">1.2.</span> <span class="nav-text">线程共享（需要回收）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HOTSPOT运行机制："><span class="nav-number">2.</span> <span class="nav-text">HOTSPOT运行机制：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建"><span class="nav-number">2.1.</span> <span class="nav-text">对象创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象构造："><span class="nav-number">2.2.</span> <span class="nav-text">对象构造：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象回收机制："><span class="nav-number">2.3.</span> <span class="nav-text">对象回收机制：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逃逸分析-栈上分配"><span class="nav-number">2.4.</span> <span class="nav-text">逃逸分析-栈上分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令重排序"><span class="nav-number">3.</span> <span class="nav-text">指令重排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁的内存语义"><span class="nav-number">3.1.</span> <span class="nav-text">锁的内存语义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Volatile内存语义："><span class="nav-number">3.2.</span> <span class="nav-text">Volatile内存语义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final内存语义："><span class="nav-number">3.3.</span> <span class="nav-text">final内存语义：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thronbird</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

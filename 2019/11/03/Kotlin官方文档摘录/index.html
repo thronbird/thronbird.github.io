@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Idioms1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950//Traversing a map/list of pairsfor ((k, v) in map) &amp;#123;    println(&quot;$k -&amp;gt; $v&quot;)&amp;#125;//Lazy proper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thronbird&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/Kotlin官方文档摘录/index.html">
+<meta property="og:site_name" content="thronbird&#39;s blog">
+<meta property="og:description" content="Idioms1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950//Traversing a map/list of pairsfor ((k, v) in map) &amp;#123;    println(&quot;$k -&amp;gt; $v&quot;)&amp;#125;//Lazy proper">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-12T07:35:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="thronbird&#39;s blog">
+<meta name="twitter:description" content="Idioms1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950//Traversing a map/list of pairsfor ((k, v) in map) &amp;#123;    println(&quot;$k -&amp;gt; $v&quot;)&amp;#125;//Lazy proper">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/Kotlin官方文档摘录/">
+
+
+
+
+
+  <title> | thronbird's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thronbird's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/Kotlin官方文档摘录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thronbird">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thronbird's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:23:01+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Idioms"><a href="#Idioms" class="headerlink" title="Idioms"></a>Idioms</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Traversing a map/list of pairs</span></span><br><span class="line"><span class="keyword">for</span> ((k, v) in map) &#123;</span><br><span class="line">    println(<span class="string">"$k -&gt; $v"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Lazy property</span></span><br><span class="line">val p: String by lazy &#123;</span><br><span class="line">    <span class="comment">// compute the string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Extension Functions</span></span><br><span class="line">fun String.spaceToCamelCase() &#123; ... &#125;</span><br><span class="line"><span class="string">"Convert this to camelcase"</span>.spaceToCamelCase()</span><br><span class="line"></span><br><span class="line"><span class="comment">//Creating a singleton</span></span><br><span class="line">object Resource &#123;</span><br><span class="line">    val name = <span class="string">"Name"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//asign</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">if</span> (x) foo() <span class="keyword">else</span> bar()</span><br><span class="line"><span class="keyword">return</span> when(x) &#123;</span><br><span class="line">    <span class="number">0</span> -&gt; <span class="string">"zero"</span></span><br><span class="line">    <span class="keyword">else</span> -&gt; <span class="string">"nonzero"</span></span><br><span class="line">&#125;</span><br><span class="line">val isEmpty: <span class="function">Boolean <span class="title">get</span><span class="params">()</span> </span>= size == <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Consuming a nullable Boolean</span></span><br><span class="line">val b: Boolean? = ...</span><br><span class="line"><span class="keyword">if</span> (b == <span class="keyword">true</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// `b` is false or null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Swapping two variables</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span></span><br><span class="line">a = b.also &#123; b = a &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Builder-style usage of methods that return Unit</span></span><br><span class="line"><span class="function">fun <span class="title">arrayOfMinusOnes</span><span class="params">(size: Int)</span>: IntArray </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> IntArray(size).apply &#123; fill(-<span class="number">1</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Java 7's try with resources</span></span><br><span class="line">val stream = Files.newInputStream(Paths.get(<span class="string">"/some/file.txt"</span>))</span><br><span class="line">stream.buffered().reader().use &#123; reader -&gt;</span><br><span class="line">    println(reader.readText())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Coding-Conventions"><a href="#Coding-Conventions" class="headerlink" title="Coding Conventions"></a>Coding Conventions</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Always use immutable collection interfaces (Collection, List, Set, Map) to declare collections which are not mutated. </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Default parameter values</span></span><br><span class="line"><span class="function">fun <span class="title">foo</span><span class="params">(a: String = <span class="string">"a"</span>)</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//If you have a functional type or a type with type parameters which is used multiple times in a codebase, prefer defining a type alias for it:</span></span><br><span class="line"></span><br><span class="line">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit</span><br><span class="line">typealias PersonIndex = Map&lt;String, Person&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Returns in a lambda:Avoid using multiple labeled returns in a lambda. Consider restructuring the lambda so that it will have a single exit point. If that's not possible or not clear enough, consider converting the lambda into an anonymous function.Do not use a labeled return for the last statement in a lambda.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Using extension functions:Use extension functions liberally. Every time you have a function that works primarily on an object, consider making it an extension function accepting that object as a receiver. To minimize API pollution, restrict the visibility of extension functions as much as it makes sense. As necessary, use local extension functions, member extension functions, or top-level extension functions with private visibility.</span></span><br></pre></td></tr></table></figure>
+<h2 id="Returns-and-Jumps"><a href="#Returns-and-Jumps" class="headerlink" title="Returns and Jumps"></a>Returns and Jumps</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span> <span class="comment">// non-local return directly to the caller of foo()</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"this point is unreachable"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///The return-expression returns from the nearest enclosing function, i.e. foo.If we need to return from a lambda expression, we have to label it and qualify the return:</span></span><br><span class="line">===》</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach &#123;</span><br><span class="line">        <span class="keyword">if</span> (it == <span class="number">3</span>) <span class="keyword">return</span><span class="symbol">@forEach</span> <span class="comment">// local return to the caller of the lambda, i.e. the forEach loop</span></span><br><span class="line">        print(it)</span><br><span class="line">    &#125;</span><br><span class="line">    print(<span class="string">" done with implicit label"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/Alternatively, we can replace the lambda expression with an anonymous function. A <span class="keyword">return</span> statement <span class="keyword">in</span> an anonymous function will <span class="keyword">return</span> from the anonymous function itself.</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;</span><br><span class="line">    listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>).forEach(<span class="function"><span class="title">fun</span><span class="params">(value: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="number">3</span>) <span class="keyword">return</span>  <span class="comment">// local return to the caller of the anonymous fun, i.e. the forEach loop</span></span><br><span class="line">        print(value)</span><br><span class="line">    &#125;)</span><br><span class="line">    print(<span class="string">" done with anonymous function"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Constructor</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DontCreateMe</span> <span class="title">private</span> <span class="title">constructor</span> () </span>&#123; ... &#125;</span><br><span class="line"><span class="comment">// parameters of the primary constructor can be used in the initializer blocks. They can also be used in property initializers declared in the class body:</span></span><br><span class="line">class Customer(name: String) &#123;</span><br><span class="line">    val customerKey = name.toUpperCase()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//If the derived class has a primary constructor, the base class can (and must) be initialized right there, using the parameters of the primary constructor.</span></span><br><span class="line">class Derived(p: Int) : Base(p)</span><br></pre></td></tr></table></figure>
+<p>Note:In Kotlin, unlike Java or C#, classes do not have static methods. In most cases, it’s recommended to simply use package-level functions instead.you can write it as a member of an <a href="https://kotlinlang.org/docs/reference/object-declarations.html" target="_blank" rel="noopener">object declaration</a>inside that class.declare a <a href="https://kotlinlang.org/docs/reference/object-declarations.html#companion-objects" target="_blank" rel="noopener">companion object</a> inside your class</p>
+<h2 id="visibility-modifiers"><a href="#visibility-modifiers" class="headerlink" title="visibility modifiers"></a>visibility modifiers</h2><p>There are four visibility modifiers in Kotlin: <code>private</code>, <code>protected</code>, <code>internal</code> and <code>public</code>. The default visibility, used if there is no explicit modifier, is <code>public</code>.</p>
+<h2 id="extension-functions"><a href="#extension-functions" class="headerlink" title="extension functions"></a>extension functions</h2><p>extension functions are dispatched <strong>statically</strong>,</p>
+<p>扩展方法可以重载但是不能重写原类方法：If a class has a member function, and an extension function is defined which has the same receiver type, the same name is applicable to given arguments, the <strong>member always wins</strong>.However, it’s perfectly OK for extension functions to overload member functions which have the same name but a different signature.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//This is what allows you to call toString() in Kotlin without checking for null: the check happens inside the extension function.</span></span><br><span class="line">fun Any?.toString(): String &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="string">"null"</span></span><br><span class="line">    <span class="comment">// after the null check, 'this' is autocast to a non-null type, so the toString() below</span></span><br><span class="line">    <span class="comment">// resolves to the member function of the Any class</span></span><br><span class="line">    <span class="keyword">return</span> toString()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p><strong>The Existential Transformation: Consumer in, Producer out!</strong> :-)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java 缺陷：there are no consumer-methods to call. But Java does not know this, and still prohibits it</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function">T <span class="title">nextT</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//we have to declare objects of type Source&lt;? extends Object&gt;, which is sort of meaningless, because we can call all the same methods on such a variable as before</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">demo</span><span class="params">(Source&lt;String&gt; strs)</span> </span>&#123;</span><br><span class="line">  Source&lt;Object&gt; objects = strs; <span class="comment">// !!! Not allowed in Java</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line">====&gt;</span><br><span class="line"><span class="comment">//kotlin - declaration-site variance: </span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="title">out</span> <span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">fun <span class="title">nextT</span><span class="params">()</span>: T</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function">fun <span class="title">demo</span><span class="params">(strs: Source&lt;String&gt;)</span> </span>&#123;</span><br><span class="line">    val objects: Source&lt;Any&gt; = strs <span class="comment">// This is OK, since T is an out-parameter</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原函数：</span></span><br><span class="line"><span class="function">fun <span class="title">reformat</span><span class="params">(str: String,</span></span></span><br><span class="line"><span class="function"><span class="params">             normalizeCase: Boolean = <span class="keyword">true</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">             upperCaseFirstLetter: Boolean = <span class="keyword">true</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">             divideByCamelHumps: Boolean = <span class="keyword">false</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">             wordSeparator: Char = <span class="string">' '</span>)</span> </span>&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//java </span></span><br><span class="line">reformat(str, <span class="keyword">true</span>, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="string">'_'</span>)</span><br><span class="line">====&gt;</span><br><span class="line"><span class="comment">//kotlin - With named arguments we can make the code much more readable:</span></span><br><span class="line">=====》</span><br><span class="line">reformat(str,</span><br><span class="line">    normalizeCase = <span class="keyword">true</span>,</span><br><span class="line">    upperCaseFirstLetter = <span class="keyword">true</span>,</span><br><span class="line">    divideByCamelHumps = <span class="keyword">false</span>,</span><br><span class="line">    wordSeparator = <span class="string">'_'</span></span><br><span class="line">)</span><br><span class="line">====&gt;</span><br><span class="line">reformat(str, wordSeparator = <span class="string">'_'</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/03/zookeeper相关/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/03/JAVA字节码执行引擎/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">thronbird</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Idioms"><span class="nav-number">1.</span> <span class="nav-text">Idioms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coding-Conventions"><span class="nav-number">2.</span> <span class="nav-text">Coding Conventions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Returns-and-Jumps"><span class="nav-number">3.</span> <span class="nav-text">Returns and Jumps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">4.</span> <span class="nav-text">Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inheritance"><span class="nav-number">5.</span> <span class="nav-text">Inheritance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visibility-modifiers"><span class="nav-number">6.</span> <span class="nav-text">visibility modifiers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extension-functions"><span class="nav-number">7.</span> <span class="nav-text">extension functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generics"><span class="nav-number">8.</span> <span class="nav-text">Generics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions"><span class="nav-number">9.</span> <span class="nav-text">Functions</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thronbird</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

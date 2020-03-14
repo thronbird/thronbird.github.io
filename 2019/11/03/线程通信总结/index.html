@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）若使用简单的synchonized机制实现互斥，会导致线程主动发起轮询，若N次轮询没有成功，就产生了N次的CPU空间浪费；如果加上了 wait/notify机制，就可以避免这些无谓的轮询，节省CPU的消耗。 wait()方法外面为什么是while循环而不是if判断?如果只有一个生产">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thronbird&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/线程通信总结/index.html">
+<meta property="og:site_name" content="thronbird&#39;s blog">
+<meta property="og:description" content="为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）若使用简单的synchonized机制实现互斥，会导致线程主动发起轮询，若N次轮询没有成功，就产生了N次的CPU空间浪费；如果加上了 wait/notify机制，就可以避免这些无谓的轮询，节省CPU的消耗。 wait()方法外面为什么是while循环而不是if判断?如果只有一个生产">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-27T09:07:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="thronbird&#39;s blog">
+<meta name="twitter:description" content="为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）若使用简单的synchonized机制实现互斥，会导致线程主动发起轮询，若N次轮询没有成功，就产生了N次的CPU空间浪费；如果加上了 wait/notify机制，就可以避免这些无谓的轮询，节省CPU的消耗。 wait()方法外面为什么是while循环而不是if判断?如果只有一个生产">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/线程通信总结/">
+
+
+
+
+
+  <title> | thronbird's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thronbird's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/线程通信总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thronbird">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thronbird's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:23:01+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么会有wait-notify-notifyAll这几个方法？（类似于Condition的await和signal）"><a href="#为什么会有wait-notify-notifyAll这几个方法？（类似于Condition的await和signal）" class="headerlink" title="为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）"></a>为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）</h2><p>若使用简单的synchonized机制实现互斥，会导致线程主动发起轮询，若N次轮询没有成功，就产生了N次的CPU空间浪费；<br>如果加上了 wait/notify机制，就可以避免这些无谓的轮询，节省CPU的消耗。</p>
+<h2 id="wait-方法外面为什么是while循环而不是if判断"><a href="#wait-方法外面为什么是while循环而不是if判断" class="headerlink" title="wait()方法外面为什么是while循环而不是if判断?"></a>wait()方法外面为什么是while循环而不是if判断?</h2><p>如果只有一个生产者线程，一个消费者线程，那其实是可以用if代替while的，因为线程调度的行为是开发者可以预测的，生产者线程只有可能被消费者线程唤醒，反之亦然，因此被唤醒时条件始终满足，程序不会出错。但是这种情况只是多线程情况下极为简单的一种，更普遍的是多个线程生产，多个线程消费，那么就极<strong>有可能出现唤醒生产者的是另一个生产者或者唤醒消费者的是另一个消费者</strong>，这样的情况下用if就必然会现类似过度生产或者过度消费的情况了，典型如IndexOutOfBoundsException的异常。所以所有的java书籍都会建议开发者永远都要把wait()放到循环语句里面。</p>
+<p>REF：<a href="https://www.jianshu.com/p/25e243850bd2" target="_blank" rel="noopener">https://www.jianshu.com/p/25e243850bd2</a></p>
+<p>REF：<a href="https://www.cnblogs.com/diegodu/p/8462148.html" target="_blank" rel="noopener">https://www.cnblogs.com/diegodu/p/8462148.html</a></p>
+<h2 id="为什么不推荐使用notify？死锁原因？"><a href="#为什么不推荐使用notify？死锁原因？" class="headerlink" title="为什么不推荐使用notify？死锁原因？"></a>为什么不推荐使用notify？死锁原因？</h2><p>假设两个消费者线程C1、C2，一个生产者线程P1。<br>时序过程如下（只是一种可能性，不绝对，毕竟只是个例子嘛～~）：</p>
+<ul>
+<li><p>C1，C2观察到缓存cache中无数据，进入等待池;</p>
+</li>
+<li><p>P1获取锁并设置cache数据，通过notify唤醒等待池中某个线程C1，假设C1被唤醒并放入锁池，然后P1释放锁、继续循环重新获取锁并因为检测到cache.size()==1而进入等待池；</p>
+</li>
+<li><p>此时锁池中的线程为C1，C1会竞争到锁，从而消费数据，然后执行notify方法并释放锁，并假设其notify方法会将C2从等待池移入锁池；</p>
+</li>
+<li><p>C2检测到cache为空，执行await()使自身进入锁池。因为自身的阻塞所以不能唤醒C1或P1，从而导致死锁！</p>
+</li>
+</ul>
+<p>REF：<a href="https://www.cnblogs.com/diegodu/p/8462148.html" target="_blank" rel="noopener">https://www.cnblogs.com/diegodu/p/8462148.html</a></p>
+<h2 id="Lock和Synchronized使用上的区别"><a href="#Lock和Synchronized使用上的区别" class="headerlink" title="Lock和Synchronized使用上的区别"></a>Lock和Synchronized使用上的区别</h2><p>Lock可以有多个等待队列（多个Condition）而Synchronized只能有一个等待队列<br>因此控制上没法唤醒指定线程，而Lock可以把不同线程挂在不同Condition上实现。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/03/并发编程总结/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/03/zookeeper相关总结/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">thronbird</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有wait-notify-notifyAll这几个方法？（类似于Condition的await和signal）"><span class="nav-number">1.</span> <span class="nav-text">为什么会有wait/notify/notifyAll这几个方法？（类似于Condition的await和signal）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wait-方法外面为什么是while循环而不是if判断"><span class="nav-number">2.</span> <span class="nav-text">wait()方法外面为什么是while循环而不是if判断?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不推荐使用notify？死锁原因？"><span class="nav-number">3.</span> <span class="nav-text">为什么不推荐使用notify？死锁原因？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lock和Synchronized使用上的区别"><span class="nav-number">4.</span> <span class="nav-text">Lock和Synchronized使用上的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thronbird</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
