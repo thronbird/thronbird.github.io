@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="企业应用架构模式读后感事务脚本缺点在于多个脚本包含很多相同的代码，大量的副本使得程序没有清晰的结构，变成杂乱无章的网状结构，而用领域模型则不再是有一个过程来控制某一个动作所有逻辑而是每个对象承担一部分相关逻辑。 真*面向对象？？？">
+<meta name="description" content="开闭原则-面向对象的核心所在==》定义接口，接口的俩职责（接口方法）是否耦合？是否应该拆成多个接口？ 这取决于是否应用程序的变化是不是总导致不同的职责同时发生变化，如果同时变化，其实没有必要分离。分开反而产生不必要的复杂性。 ==》变化的轴线仅当实际变化发生才有意义，如果没有变化的时候就去应用SRP或者仍和其他原则都是不明智的 代码设计要预测最有可能变化的地方做出抽象，来隔离变化，没有任何情况都能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="thronbird&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2020/03/14/企业应用架构模式读后感/index.html">
+<meta property="og:title" content="敏捷软件开发（Agile Software Development ）读后感">
+<meta property="og:url" content="http://yoursite.com/2020/03/14/《敏捷软件开发》笔记/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="企业应用架构模式读后感事务脚本缺点在于多个脚本包含很多相同的代码，大量的副本使得程序没有清晰的结构，变成杂乱无章的网状结构，而用领域模型则不再是有一个过程来控制某一个动作所有逻辑而是每个对象承担一部分相关逻辑。 真*面向对象？？？">
+<meta property="og:description" content="开闭原则-面向对象的核心所在==》定义接口，接口的俩职责（接口方法）是否耦合？是否应该拆成多个接口？ 这取决于是否应用程序的变化是不是总导致不同的职责同时发生变化，如果同时变化，其实没有必要分离。分开反而产生不必要的复杂性。 ==》变化的轴线仅当实际变化发生才有意义，如果没有变化的时候就去应用SRP或者仍和其他原则都是不明智的 代码设计要预测最有可能变化的地方做出抽象，来隔离变化，没有任何情况都能">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-14T12:40:59.174Z">
+<meta property="og:updated_time" content="2020-03-14T14:59:11.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thronbird&#39;s blog">
-<meta name="twitter:description" content="企业应用架构模式读后感事务脚本缺点在于多个脚本包含很多相同的代码，大量的副本使得程序没有清晰的结构，变成杂乱无章的网状结构，而用领域模型则不再是有一个过程来控制某一个动作所有逻辑而是每个对象承担一部分相关逻辑。 真*面向对象？？？">
+<meta name="twitter:title" content="敏捷软件开发（Agile Software Development ）读后感">
+<meta name="twitter:description" content="开闭原则-面向对象的核心所在==》定义接口，接口的俩职责（接口方法）是否耦合？是否应该拆成多个接口？ 这取决于是否应用程序的变化是不是总导致不同的职责同时发生变化，如果同时变化，其实没有必要分离。分开反而产生不必要的复杂性。 ==》变化的轴线仅当实际变化发生才有意义，如果没有变化的时候就去应用SRP或者仍和其他原则都是不明智的 代码设计要预测最有可能变化的地方做出抽象，来隔离变化，没有任何情况都能">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/14/企业应用架构模式读后感/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/14/《敏捷软件开发》笔记/">
 
 
 
 
 
-  <title> | thronbird's blog</title>
+  <title>敏捷软件开发（Agile Software Development ）读后感 | thronbird's blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/企业应用架构模式读后感/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/《敏捷软件开发》笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thronbird">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">敏捷软件开发（Agile Software Development ）读后感</h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T20:40:59+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T21:09:27+08:00">
                 2020-03-14
               </time>
             
@@ -299,8 +299,17 @@
       
 
       
-        <h2 id="企业应用架构模式读后感"><a href="#企业应用架构模式读后感" class="headerlink" title="企业应用架构模式读后感"></a>企业应用架构模式读后感</h2><p>事务脚本缺点在于多个脚本包含很多相同的代码，大量的副本使得程序没有清晰的结构，变成杂乱无章的网状结构，而用领域模型则不再是有一个过程来控制某一个动作所有逻辑而是每个对象承担一部分相关逻辑。</p>
-<p>真*面向对象？？？</p>
+        <p>开闭原则-面向对象的核心所在==》<br>定义接口，接口的俩职责（接口方法）是否耦合？是否应该拆成多个接口？</p>
+<p>这取决于是否应用程序的变化是不是总导致不同的职责同时发生变化，如果同时变化，其实没有必要分离。分开反而产生不必要的复杂性。</p>
+<p>==》变化的轴线仅当实际变化发生才有意义，如果没有变化的时候就去应用SRP或者仍和其他原则都是不明智的</p>
+<p>代码设计要预测最有可能变化的地方做出抽象，来隔离变化，没有任何情况都能封闭变化的设计，只能从经验中获得一种预测能力，预测可能出现变化的地方并事先隔离。</p>
+<p>谚语有云：愚弄我一次应感羞愧的是你。再次愚弄我应感羞愧的是我。为了防止软件背负不必要的复杂性，我们允许自己可以被愚弄一次，设计尽量简单，假设变化不会发生，如果变化发生，我们就需要创建抽象来隔离以后同类的变化。而这第一颗子弹来的越早越好，要做到这一点。</p>
+<ul>
+<li>尽量短的迭代周期，几天一个迭代</li>
+<li>设计基础结构之前就加入特性（首先开发最重要的特性），并展示出来</li>
+</ul>
+<p>开发人员应该仅仅对程序中呈现出频繁变化的部分做抽象，拒绝不成熟的抽象，和抽象本身一样重要。</p>
+<p>设计模式不是一开始就完成的插入代码和设计中去的，代码是随着需求不断演化重构，解决耦合性、达成简单性、以及表达性的问题，在这个过程中会发现代码结构逐渐接近一个有名称的特定的所谓模式。</p>
 
       
     </div>
@@ -325,7 +334,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/14/Clean Arch 摘录/" rel="next" title>
+              <a href="/2020/03/14/《深入理解计算机系统》读后感/" rel="next" title>
                 <i class="fa fa-chevron-left"></i> 
               </a>
             
@@ -334,10 +343,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/14/《深入理解计算机系统》读后感/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -389,17 +394,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -414,7 +410,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -441,22 +437,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#企业应用架构模式读后感"><span class="nav-number">1.</span> <span class="nav-text">企业应用架构模式读后感</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
