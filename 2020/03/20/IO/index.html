@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="IO当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/">
+<meta name="description" content="当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/O：用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="thronbird&#39;s blog">
+<meta property="og:title" content="IO">
 <meta property="og:url" content="http://yoursite.com/2020/03/20/IO/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="IO当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/">
+<meta property="og:description" content="当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/O：用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-29T09:36:12.741Z">
+<meta property="og:updated_time" content="2020-03-29T14:52:35.251Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thronbird&#39;s blog">
-<meta name="twitter:description" content="IO当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/">
+<meta name="twitter:title" content="IO">
+<meta name="twitter:description" content="当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：  用户线程等待内核将数据从网卡拷贝到内核空间。  内核将数据从内核空间拷贝到用户空间。   各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的. 同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到来，把数据从网卡拷贝 到内核空间，接着把数据拷贝到用户空间，再把用户线程叫醒。 同步非阻塞I/O：用">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title> | thronbird's blog</title>
+  <title>IO | thronbird's blog</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">IO</h1>
         
 
         <div class="post-meta">
@@ -299,8 +299,7 @@
       
 
       
-        <hr>
-<h2 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h2><p>当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：</p>
+        <p>当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：</p>
 <ul>
 <li><p>用户线程等待内核将数据从网卡拷贝到内核空间。</p>
 </li>
@@ -401,17 +400,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,22 +443,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO"><span class="nav-number">1.</span> <span class="nav-text">IO</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

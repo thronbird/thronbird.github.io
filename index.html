@@ -502,7 +502,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/20/IO/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2020/03/20/IO/" itemprop="url">IO</a></h1>
         
 
         <div class="post-meta">
@@ -554,8 +554,7 @@
       
         
           
-          
-IO当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：
+          当用户线程发起I/O操作后，网络数据读取操作会经历两个步骤：
 
 用户线程等待内核将数据从网卡拷贝到内核空间。
 
@@ -563,7 +562,7 @@ IO当用户线程发起I/O操作后，网络数据读取操作会经历两个步
 
 
 各种I/O模型的区别就是：它们实现这两个步骤的方式是不一样的.
-同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡
+同步阻塞I/O：用户线程发起read调用后就阻塞了，让出CPU。内核等待网卡数据到
           ...
           <!--noindex-->
           <div class="post-button text-center">
