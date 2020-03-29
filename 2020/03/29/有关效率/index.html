@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="thronbird&#39;s blog">
 <meta property="og:description" content="关于沟通：我们要多问问题，⽬的就是为了不做那些不该做的事。 把函数写短： 能看到多⼩，就可以在多细的粒度上⼯作。单⼀职责这件事举个例⼦很容易，但在真实的⼯作场景中，你能看到⼀个模块在为多少 actor 服务，就完全取决于你的分解能⼒了。我⾃⼰的习惯⽽⾔，通常的函数都在⼗⾏以内，如果是表达能⼒很强的语⾔，⽐如 Ruby，函数会更短。 设计：在软件开发中，框架、工具之类的东⻄都是易变的，唯有设计的可变">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2020/03/29/images/image-20200329172843092.png">
-<meta property="og:updated_time" content="2020-03-29T09:39:02.275Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/29/images/image-20200329175044437.png">
+<meta property="og:updated_time" content="2020-03-29T09:51:37.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="效率问题">
 <meta name="twitter:description" content="关于沟通：我们要多问问题，⽬的就是为了不做那些不该做的事。 把函数写短： 能看到多⼩，就可以在多细的粒度上⼯作。单⼀职责这件事举个例⼦很容易，但在真实的⼯作场景中，你能看到⼀个模块在为多少 actor 服务，就完全取决于你的分解能⼒了。我⾃⼰的习惯⽽⾔，通常的函数都在⼗⾏以内，如果是表达能⼒很强的语⾔，⽐如 Ruby，函数会更短。 设计：在软件开发中，框架、工具之类的东⻄都是易变的，唯有设计的可变">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/29/images/image-20200329172843092.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/29/images/image-20200329175044437.png">
 
 
 
@@ -307,7 +307,7 @@
 <p><strong>有关抽象：</strong>分层架构，实际上，就是⼀种在设计上的分解。在软件开发中，分层⼏乎是⽆处不在的，因为好的分 层往往需要有好的抽象。⽹络模型的分层架构实现得太好了，好到你作为上层的使 ⽤者⼏乎可以忽略底层。⽽这正是分层真正的价值：构建⼀个良好的抽象。编程语⾔也是⼀种抽象。Node.js 的出现让 JavaScript 成为了⼀个更好的抽象。</p>
 <p><strong>DDD:</strong>构建抽象，最核⼼的⼀步是构建出你的核⼼模型。即是MVC三层架构中的服务层。你的领域层只依赖于你的领域对象，第三⽅发过来的内容先做⼀次转换，转换成你 的领域对象。这种做法称为防腐层。，已经构建好的领域模型怎么更好地提供给其他部分使⽤呢？⼀个好的做法是封装成领域特定语 ⾔（Domain Speciﬁc Language，DSL）。 限界上下⽂限定了通⽤语⾔⾃由使⽤的边界，⼀旦出界，含义便⽆法保证。正是由于边界的存在，⼀个限界上下⽂刚好可以成为⼀个独⽴的部署单元，⽽这个部署单元就可以成为⼀个服务。先⽤分模块的⽅式在⼀个⼯程内，让服务先演化⼀段时间，等到真的觉得某个模块可以“毕业”了，再去开启微服务之旅。（DDD学习：《领域驱动设计精粹》（其他书复杂不好懂，概念模糊，深究没必要））</p>
 <p><strong>了解公司：</strong>业务模式-》技术栈-》系统对外接口/能力（REST|RPC|MQ-&gt;JSON|XML|BYTE）-》内部模块分层结构</p>
-<p><img src="../images/image-20200329172843092.png" alt="image-20200329172843092"></p>
+<p><img src="../images/image-20200329175044437.png" alt="../images/image-20200329175044437.png"></p>
 <p>-摘自《10x程序员工作法》</p>
 
       
