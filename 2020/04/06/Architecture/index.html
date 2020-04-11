@@ -86,17 +86,17 @@
 <meta property="og:site_name" content="thronbird&#39;s blog">
 <meta property="og:description" content="架构的道物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关系，保证">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407214146524.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407224251925.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200408003948013.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200408214716628.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200411194004616.png">
-<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200411202510301.png">
-<meta property="og:updated_time" content="2020-04-11T13:29:21.065Z">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200407214146524.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200407224251925.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200408003948013.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200408214716628.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200411194004616.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200411202510301.png">
+<meta property="og:updated_time" content="2020-04-11T15:39:44.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Architecture">
 <meta name="twitter:description" content="架构的道物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关系，保证">
-<meta name="twitter:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407214146524.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/06/Architecture/image-20200407214146524.png">
 
 
 
@@ -323,7 +323,7 @@
 <li><p>业务架构设计如何实现业务的<strong>可复用</strong>呢？首先，模块的职责定位要非常清晰。对于模块来说，在定位范围内的职责要全部涵盖到，而 不在这个范围的职责全部不要。其次，模块的数据模型和接口设计要保证通用。架构师需要归纳业务场景，通过抽象提炼， 形成通用化的设计，以此来满足多个类似场景的需求。实现模块的高复用，还需要做好业务的<strong>层次划分</strong>。我们知道，越是底层的业务，它就 相对更固定。举个例子，同样是订单业务域，对于底层订单的增删改查功能，不同类型的订 单都是一样的，但对于上层的订单生命周期管理，外卖订单和堂食订单可能就不一样。</p>
 </li>
 </ul>
-<p><img src="../images/Architecture/image-20200407214146524.png" alt="image-20200407214146524"></p>
+<p><img src="/2020/04/06/Architecture/image-20200407214146524.png" alt="image-20200407214146524"></p>
 <ul>
 <li><p>具体<strong>划分模块职责</strong>的时候，要保证模块业务概念的完整性。数据上，模块 需要覆盖对应业务领域的全部数据，比如一个订单模块，它要覆盖所有渠道的订单，包括三 方平台的订单、自有商城的订单、线下门店的订单等，这些不同类型订单的数据模型和实际 数据，都由订单模块负责。功能上，模块要包含业务领域的全部功能，比如订单模块包含所有订单相关的功能，包括订 单数据的增删改查、订单业务规则校验、订单的状态和生命周期管理等。</p>
 </li>
@@ -336,20 +336,20 @@
 <p>应用层，对应和前端表示层直接关联的服务端，属于 Control 层。</p>
 <p>聚合服务层，如果系统业务比较复杂，经常需要单独的聚合服务层负责业务流程的编排 组合，这个属于 Model 层的加强。</p>
 <p>基础服务层，代表最基础的业务模块管理，如订单、商品、用户等，属于实际的 Model 层。</p>
-<p><img src="../images/Architecture/image-20200407224251925.png" alt="image-20200407224251925"></p>
+<p><img src="/2020/04/06/Architecture/image-20200407224251925.png" alt="image-20200407224251925"></p>
 </li>
 <li><p><strong>模块拆分：</strong>水平拆分|垂直拆分，一般做业务架构时，我们先考虑垂直拆分，从大方向上，把不同业务给区分清楚，然后再针 对具体业务，按照业务处理流程进行水平拆分。</p>
 </li>
 <li><strong>模块整合：</strong>通用化整合（改造支持更多业务）|平台化整合（更大粒度抽象）</li>
 </ul>
-<h3 id="架构演进"><a href="#架构演进" class="headerlink" title="架构演进"></a>架构演进</h3><p><img src="../images/Architecture/image-20200408003948013.png" alt="image-20200408003948013"></p>
+<h3 id="架构演进"><a href="#架构演进" class="headerlink" title="架构演进"></a>架构演进</h3><p><img src="/2020/04/06/Architecture/image-20200408003948013.png" alt="image-20200408003948013"></p>
 <ul>
 <li>微服务和SOA的区别</li>
 </ul>
 <p>微服务强调围绕业务，进行清晰的业务和数据边界划分，并通过良好定义的接口输出 业务能力，这和 SOA 架构里的服务有点类似。但两者不同的地方在于，微服务是去中心化 的，不需要 SOA 架构中 ESB 的集中管理方式。</p>
 <p>一方面，微服务强调所谓的<strong>哑管道</strong>，即客户端可以通过 HTTP 等简单的技术手段，访问微 服务，避免重的通信协议和数据编码支持。另一方面，微服务强调<strong>智能终端</strong>，所有的业务逻 辑包含在微服务内部，不需要额外的中间层提供业务规则处理。</p>
 <p>这样子，微服务提供方可以自由地选择语言和工具，来落地微服务，服务的部署和维护上也 更灵活，从这个意义上来说，你也可以认为微服务是轻量级的 SOA 服务。</p>
-<h3 id="代码复用"><a href="#代码复用" class="headerlink" title="代码复用"></a>代码复用</h3><p><img src="../images/Architecture/image-20200408214716628.png" alt="image-20200408214716628"></p>
+<h3 id="代码复用"><a href="#代码复用" class="headerlink" title="代码复用"></a>代码复用</h3><p><img src="/2020/04/06/Architecture/image-20200408214716628.png" alt="image-20200408214716628"></p>
 <p>从技术复用到业务复用，越往上，复用程度越高，复用产生 的价值也越大，但实现起来也越复杂，它能复用的场景就越有限。</p>
 <h3 id="服务设计"><a href="#服务设计" class="headerlink" title="服务设计"></a>服务设计</h3><p>对于落地一个共享服务来说，服务边界的划分和功能的抽象设计是核心。</p>
 <p><strong>服务边界确定了这个服务应该“做什么”，抽象设计确定了这个服务应该“怎么做”</strong></p>
@@ -374,8 +374,8 @@
 <li>系统可降级（限流、降级、熔断、功能禁用（设置开关））</li>
 <li>系统可监控</li>
 </ul>
-<p><img src="../images/Architecture/image-20200411194004616.png" alt="image-20200411194004616"></p>
-<h3 id="高并发设计"><a href="#高并发设计" class="headerlink" title="高并发设计"></a>高并发设计</h3><p><img src="../images/Architecture/image-20200411202510301.png" alt="image-20200411202510301"></p>
+<p><img src="/2020/04/06/Architecture/image-20200411194004616.png" alt="image-20200411194004616"></p>
+<h3 id="高并发设计"><a href="#高并发设计" class="headerlink" title="高并发设计"></a>高并发设计</h3><p><img src="/2020/04/06/Architecture/image-20200411202510301.png" alt="image-20200411202510301"></p>
 <h3 id="学习技术-》先深度-》后广度"><a href="#学习技术-》先深度-》后广度" class="headerlink" title="学习技术-》先深度-》后广度"></a>学习技术-》先深度-》后广度</h3><p>现在技术发展很快，一方面我们需要紧跟前沿的东西，不要落伍。但 另一方面，技术点很多，全部深入掌握不现实。这怎么应对呢？</p>
 <p>从开发的角度，学习技术先深度后广度，比如把rabbitMQ吃透，再学其他MQ，避免样样能，样 样不精。 当你对技术了解一定程度，到了架构师程度，就要追求广度，先要大方向上了解，然后看具体点 的深度。</p>
 <p>架构设计时，你需要知道每类核心技术组件的典型应用方式，比如MQ，一般用于异步，系统解 耦，流量削峰等用途，还有DB，缓存，MQ在不同业务场景下是怎么组合的，然后考虑具体的选 用什么db，什么缓存和MQ组件。 然后每类组件，都有哪些具体实现，如果你对某个MQ很了解，其他的大致了解特性即可，不一定 要深入细节，现在如果新推出一个MQ组件，你去了解它有什么新特性，这样实际也花不了太多时 间。</p>
@@ -421,6 +421,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/11/testpic/" rel="prev" title="testpic">
+                testpic <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -497,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
