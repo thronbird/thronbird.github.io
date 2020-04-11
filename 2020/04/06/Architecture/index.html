@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="###架构的道 物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Architecture">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/Architecture/index.html">
+<meta property="og:site_name" content="thronbird&#39;s blog">
+<meta property="og:description" content="###架构的道 物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407214146524.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407224251925.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200408003948013.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200408214716628.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200411194004616.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200411202510301.png">
+<meta property="og:updated_time" content="2020-04-11T13:20:01.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Architecture">
+<meta name="twitter:description" content="###架构的道 物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/06/images/Architecture/image-20200407214146524.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/06/Architecture/">
+
+
+
+
+
+  <title>Architecture | thronbird's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thronbird's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thronbird">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thronbird's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Architecture</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-06T21:51:23+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###架构的道</p>
+<p>物理学中有个很著名的“熵增定律”：一个封闭系统，都是从有序到无序，也就是它的熵 （即混乱程度）会不断地增加，最终系统会彻底变得无序。自然界中的生物可以通过和外界交互，主动进行新陈代谢，制造“负熵”，也就是降 低混乱程度，来保证自身的有序性，继续生存。比如，植物通过光合作用，把光能、二氧化 碳和水合成有机物，以此滋养自己，延续生命。对于软件系统，我们也可以主动地调整系统 各个部分的关系，保证系统整体的有序性，来更好地适应不断增长的业务和技术变化。这种 系统内部关系的调整就是通过架构实现的，所以，架构的本质就是：</p>
+<p>架构实现从无序到有序，是通过合理的内部编排实现的，基本的手段，就 是“分”与“合”，先把系统打散，然后将它们重新组合，形成更合理的关系。这个分与合的过程将系统的复杂性分解为两个层次：</p>
+<p>首先，各个子系统承担独立的职责，内部包含了自身的复杂性。子系统的复杂性对外部 是透明的，外部不用关心。其次，子系统通过封装后，简化为职责明确的一个点，因此，我们只需要在合的过程 中，解决各个点之间的依赖关系，这样就可以定义出系统整体。</p>
+<h3 id="业务架构"><a href="#业务架构" class="headerlink" title="业务架构"></a>业务架构</h3><ul>
+<li><p>如果按照业务流程来拆分系统模块，那么有多少业务流程，就有多少个系统模块，这 个对应关系比较直接，但实现起来很困难。</p>
+</li>
+<li><p>如果按照业务域来拆分，有多少业务领域，就有多个系统模块，流程中的业务节点按照 业务域的不同，可以划分到不同的系统模块。</p>
+</li>
+<li>实现模块的高复用，还需要做好业务的层次划分。我们知道，越是底层的业务，它就 相对更固定。举个例子，同样是订单业务域，对于底层订单的增删改查功能，不同类型的订 单都是一样的，但对于上层的订单生命周期管理，外卖订单和堂食订单可能就不一样。把一个业务域按照层次拆分得更细，比如，把订单 模块拆分为多个上层订单模块和一个基础订单模块，这样，基础订单模块对于所有类型的订 单，都能够提供复用。模块还要：自成体系，粒度适中。模块的业务逻辑尽量围绕自身内部数据进行处理，对外部依赖越小，模块的封装性越好，稳 定性也越强，不会随着外部模块的调整而调整。</li>
+</ul>
+<p>对业务架构师来说，TA 的工作，就是把业务流程和节点打散，按照业务域的维度来 划分系统模块，并定义这些模块之间的关系，最终形成一个高度结构化的模块体系。这样， 开发人员既容易理解业务，又方便落地系统。</p>
+<p>###模块设计</p>
+<ul>
+<li><p>对系统进行建模，系统 = 模块 + 关系</p>
+</li>
+<li><p>业务架构设计如何实现业务的<strong>可复用</strong>呢？首先，模块的职责定位要非常清晰。对于模块来说，在定位范围内的职责要全部涵盖到，而 不在这个范围的职责全部不要。其次，模块的数据模型和接口设计要保证通用。架构师需要归纳业务场景，通过抽象提炼， 形成通用化的设计，以此来满足多个类似场景的需求。实现模块的高复用，还需要做好业务的<strong>层次划分</strong>。我们知道，越是底层的业务，它就 相对更固定。举个例子，同样是订单业务域，对于底层订单的增删改查功能，不同类型的订 单都是一样的，但对于上层的订单生命周期管理，外卖订单和堂食订单可能就不一样。</p>
+</li>
+</ul>
+<p><img src="../images/Architecture/image-20200407214146524.png" alt="image-20200407214146524"></p>
+<ul>
+<li><p>具体<strong>划分模块职责</strong>的时候，要保证模块业务概念的完整性。数据上，模块 需要覆盖对应业务领域的全部数据，比如一个订单模块，它要覆盖所有渠道的订单，包括三 方平台的订单、自有商城的订单、线下门店的订单等，这些不同类型订单的数据模型和实际 数据，都由订单模块负责。功能上，模块要包含业务领域的全部功能，比如订单模块包含所有订单相关的功能，包括订 单数据的增删改查、订单业务规则校验、订单的状态和生命周期管理等。</p>
+</li>
+<li><p>模块内部由数据和业务逻辑组成，其中数据是核心，业务逻辑围绕着数据，对数据做进一步 加工，方便外部使用。业务逻辑尽量围绕自身内部数据进行处理，对外部依赖越小，模块的封装性越好，稳 定性也越强，不会随着外部模块的调整而调整。<strong>模块的粒度</strong>要保持适中，不能为了追求定位清晰，把粒度划分得很小，导致系统的碎片化。 比如系统早期的时候，一般我们把积分功能放到用户模块里面，不单独构建积分模块，如果 后续积分的概念越来越突出，承载的业务越来越复杂，到时候可以把积分功能分离出来，单 独成模块。你所在公司里有没有类似的肿瘤系统，它包含了太多职责，导致 系统内部结构混乱，大家都不敢对它进行调整？</p>
+</li>
+<li><p>如果不对<strong>模块的依赖关系</strong>做针对性设计的话，依赖关系就是一个多对多的网状结构，一个有 N 个模块的系统，理论上有 N×N 个依赖关系，如果再加一个新的模块，复杂度就变成(N+1)×(N+1)，系统的复杂度随着功能的数量指数级地上升，如果考虑依赖具有方向性，这个数字还要 加倍。我们要尽量把网状结构转化为层次结构，模块结构层次化是简化模块依赖关系的有力手段。</p>
+<p>所以，要简化模块的依赖关系，我们就要同时简化依赖的方向和减少依赖的数量。首先，我们希望模块之间的依赖是单向的，尽量避免相互调用，为什么单向更好呢？我们知 道业务流程是有顺序的，如果模块依赖关系越直观地体现业务流程的顺序，越能帮助人理 解，否则，我们会被双向的依赖箭头绕的晕头转向，很难通过模块之间的依赖关系还原实际 业务的处理过程。</p>
+<p><strong>MVC:</strong></p>
+<p>表示层，对应前端的模块，如 App、小程序、公众号等，属于 View 层。</p>
+<p>应用层，对应和前端表示层直接关联的服务端，属于 Control 层。</p>
+<p>聚合服务层，如果系统业务比较复杂，经常需要单独的聚合服务层负责业务流程的编排 组合，这个属于 Model 层的加强。</p>
+<p>基础服务层，代表最基础的业务模块管理，如订单、商品、用户等，属于实际的 Model 层。</p>
+<p><img src="../images/Architecture/image-20200407224251925.png" alt="image-20200407224251925"></p>
+</li>
+<li><p><strong>模块拆分：</strong>水平拆分|垂直拆分，一般做业务架构时，我们先考虑垂直拆分，从大方向上，把不同业务给区分清楚，然后再针 对具体业务，按照业务处理流程进行水平拆分。</p>
+</li>
+<li><strong>模块整合：</strong>通用化整合（改造支持更多业务）|平台化整合（更大粒度抽象）</li>
+</ul>
+<h3 id="架构演进"><a href="#架构演进" class="headerlink" title="架构演进"></a>架构演进</h3><p><img src="../images/Architecture/image-20200408003948013.png" alt="image-20200408003948013"></p>
+<ul>
+<li>微服务和SOA的区别</li>
+</ul>
+<p>微服务强调围绕业务，进行清晰的业务和数据边界划分，并通过良好定义的接口输出 业务能力，这和 SOA 架构里的服务有点类似。但两者不同的地方在于，微服务是去中心化 的，不需要 SOA 架构中 ESB 的集中管理方式。</p>
+<p>一方面，微服务强调所谓的<strong>哑管道</strong>，即客户端可以通过 HTTP 等简单的技术手段，访问微 服务，避免重的通信协议和数据编码支持。另一方面，微服务强调<strong>智能终端</strong>，所有的业务逻 辑包含在微服务内部，不需要额外的中间层提供业务规则处理。</p>
+<p>这样子，微服务提供方可以自由地选择语言和工具，来落地微服务，服务的部署和维护上也 更灵活，从这个意义上来说，你也可以认为微服务是轻量级的 SOA 服务。</p>
+<h3 id="代码复用"><a href="#代码复用" class="headerlink" title="代码复用"></a>代码复用</h3><p><img src="../images/Architecture/image-20200408214716628.png" alt="image-20200408214716628"></p>
+<p>从技术复用到业务复用，越往上，复用程度越高，复用产生 的价值也越大，但实现起来也越复杂，它能复用的场景就越有限。</p>
+<h3 id="服务设计"><a href="#服务设计" class="headerlink" title="服务设计"></a>服务设计</h3><p>对于落地一个共享服务来说，服务边界的划分和功能的抽象设计是核心。</p>
+<p><strong>服务边界确定了这个服务应该“做什么”，抽象设计确定了这个服务应该“怎么做”</strong></p>
+<h3 id="服务边界划分"><a href="#服务边界划分" class="headerlink" title="服务边界划分"></a>服务边界划分</h3><ul>
+<li><strong>完整性原则</strong>-数据完整、功能全面</li>
+</ul>
+<p>尽可能在服务内部封装完整的业务规则，对外提供完整的业务 语义，最大程度地简化服务的使用。</p>
+<ul>
+<li><strong>一致性原则</strong>-服务的数据和职责要一致，谁拥有信息，谁就负责提供相应的功能。</li>
+</ul>
+<p>服务内部的业务逻辑要尽量依赖内部数据，而不是接口输入的数据，否则会造成数据和业务规则的脱节（一个在外面，一个在里面），如果服务对外部的依赖性很强，就无法提供稳定 的能力了。</p>
+<ul>
+<li><strong>正交原则</strong>-既然是基础服务，它们就处于调用链的底层，服务之间不会有任何的调用关系</li>
+</ul>
+<h3 id="服务拆分"><a href="#服务拆分" class="headerlink" title="服务拆分"></a>服务拆分</h3><p>圈表===》收集sql（业务场景|访问频率-》封装接口）===》拆分sql（复合sql的拆分）==》构建服务</p>
+<h3 id="高可用设计"><a href="#高可用设计" class="headerlink" title="高可用设计"></a>高可用设计</h3><ul>
+<li><p>冗余无单点（1.负载均衡多节点  2.远程网络通信线路切换移动+电信 3.机房层面异地多IDC部署）</p>
+</li>
+<li><p>水平扩展 （无状态加机器就行，有状态可以水平分库不过要应用层配合）</p>
+</li>
+<li>柔性事务 （BASE，部分的 C（软状态和最终一致）和部分的 A（基本可用））</li>
+<li>系统可降级（限流、降级、熔断、功能禁用（设置开关））</li>
+<li>系统可监控</li>
+</ul>
+<p><img src="../images/Architecture/image-20200411194004616.png" alt="image-20200411194004616"></p>
+<h3 id="高并发设计"><a href="#高并发设计" class="headerlink" title="高并发设计"></a>高并发设计</h3><p><img src="../images/Architecture/image-20200411202510301.png" alt="image-20200411202510301"></p>
+<h3 id="学习技术-》先深度-》后广度"><a href="#学习技术-》先深度-》后广度" class="headerlink" title="学习技术-》先深度-》后广度"></a>学习技术-》先深度-》后广度</h3><p>现在技术发展很快，一方面我们需要紧跟前沿的东西，不要落伍。但 另一方面，技术点很多，全部深入掌握不现实。这怎么应对呢？</p>
+<p>从开发的角度，学习技术先深度后广度，比如把rabbitMQ吃透，再学其他MQ，避免样样能，样 样不精。 当你对技术了解一定程度，到了架构师程度，就要追求广度，先要大方向上了解，然后看具体点 的深度。</p>
+<p>架构设计时，你需要知道每类核心技术组件的典型应用方式，比如MQ，一般用于异步，系统解 耦，流量削峰等用途，还有DB，缓存，MQ在不同业务场景下是怎么组合的，然后考虑具体的选 用什么db，什么缓存和MQ组件。 然后每类组件，都有哪些具体实现，如果你对某个MQ很了解，其他的大致了解特性即可，不一定 要深入细节，现在如果新推出一个MQ组件，你去了解它有什么新特性，这样实际也花不了太多时 间。</p>
+<p>关于DDD与一致性分布式事务结合怎样设计更合理。 强的一致性分布式事务实现一般不推荐，实现太复杂，也严重影响性能。实践上有多种处理方式 尽可能保证数据一致性。比如ebay经常用的本地消息，阿里的tcc，rocketmq支持的消息事务， 或者调用出错后调用上个服务的取消接口，或者消息补偿等，你需要根据具体业务的特点选择落 地方案，这里没有统一方案，有时候一致性没有我们想象的必须要做到。</p>
+<p>第二个问题： 是关于网关的问题，我一般的都是使用自研netty。 a. 对于自定义服务聚合应该如何处理比较恰当. 不建议在网关层面做业务聚合，一般是构建单独的具体服务，网关做一些系统性功能，我有一讲 是专门介绍1号店移动端网关的系统改造，你可以参考下。</p>
+<p>b. 请求鉴权到达什么力度比较合适，如果权限比较复杂，如果使用jwt 在下游服务中该如何设计， 有没有更好的方式。</p>
+<p>c. 在使用k8s时，网关如何设计才能与与k8s的ingress更好的结合。</p>
+<p>d.对于服务发现，如果在k8s中还是否有必要在网关中设计，产品应该如何选取？ 网关一般针对外部请求，路由到内部服务，一般来说这个路由逻辑要比较灵活和复杂，比如解析u rl路径，确定路由到哪个内部服务，这个K8s内部服务的路由还是有区别。</p>
+<p>第三个问题： 关于监控 日志：一般使用底层ES+K，收集用FileBeat推到Kafka，有没有比filebeat更好的产品选型或收集 方式？ 有没有别的，我不是特别清楚，我们也用filebeat，在.net环境，也踩到过占内存的坑。</p>
+<p>监控： 一般需要监控的地方主要分为几大类，除了地址，我用了skywalking，还有预警，一般还需要考 虑那些，如果上云平台的k8s，该如何搭配比较好？ 监控这块，作为保证系统高可用的手段，专栏会有专门一篇实际案例介绍，到时有问题深入讨 论。</p>
+<p>第四个问题： 关于多租户SaaS和私有云，如何结合实现比较好，以及数据和升级该如何考量，核心问题是如何实现一套代码和数据结构，比如基于同样一套基础服务，方便应用和数据升级。</p>
+<p>-王庆友</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/02/OS/" rel="next" title="OS">
+                <i class="fa fa-chevron-left"></i> OS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">thronbird</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#业务架构"><span class="nav-number">1.</span> <span class="nav-text">业务架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构演进"><span class="nav-number">2.</span> <span class="nav-text">架构演进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码复用"><span class="nav-number">3.</span> <span class="nav-text">代码复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务设计"><span class="nav-number">4.</span> <span class="nav-text">服务设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务边界划分"><span class="nav-number">5.</span> <span class="nav-text">服务边界划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务拆分"><span class="nav-number">6.</span> <span class="nav-text">服务拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用设计"><span class="nav-number">7.</span> <span class="nav-text">高可用设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高并发设计"><span class="nav-number">8.</span> <span class="nav-text">高并发设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习技术-》先深度-》后广度"><span class="nav-number">9.</span> <span class="nav-text">学习技术-》先深度-》后广度</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thronbird</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
