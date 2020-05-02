@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="数据库主从不一致解决方案：方案一：忽略–如果业务能够接受，别把系统架构搞得太复杂 方案二：强制读主–使用一个高可用主库提供数据库服务–过于粗暴 方案三：选择性读主–写主库时将哪个库，哪个表，哪个主键三个信息拼装一个key设置到cache里，这条记录的超时时间，设置为“主从同步时延（比如1s）”,然后读的时候先判断cache有没有，有则读主库，否则读从库 ref:数据库主从不一致，怎么解？ 数据库|">
-<meta property="og:type" content="article">
-<meta property="og:title" content="数据库|缓存一致性总结">
-<meta property="og:url" content="http://yoursite.com/2019/11/03/数据库缓存一致性总结/index.html">
+<meta name="description" content="技术的宽度和深度plist-xml fastlane-gradle spring-guice rocketmq-kafka">
+<meta property="og:type" content="website">
+<meta property="og:title" content="thronbird&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/技术的宽度和深度.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="数据库主从不一致解决方案：方案一：忽略–如果业务能够接受，别把系统架构搞得太复杂 方案二：强制读主–使用一个高可用主库提供数据库服务–过于粗暴 方案三：选择性读主–写主库时将哪个库，哪个表，哪个主键三个信息拼装一个key设置到cache里，这条记录的超时时间，设置为“主从同步时延（比如1s）”,然后读的时候先判断cache有没有，有则读主库，否则读从库 ref:数据库主从不一致，怎么解？ 数据库|">
+<meta property="og:description" content="技术的宽度和深度plist-xml fastlane-gradle spring-guice rocketmq-kafka">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-14T15:06:54.454Z">
+<meta property="og:updated_time" content="2020-04-15T03:53:42.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据库|缓存一致性总结">
-<meta name="twitter:description" content="数据库主从不一致解决方案：方案一：忽略–如果业务能够接受，别把系统架构搞得太复杂 方案二：强制读主–使用一个高可用主库提供数据库服务–过于粗暴 方案三：选择性读主–写主库时将哪个库，哪个表，哪个主键三个信息拼装一个key设置到cache里，这条记录的超时时间，设置为“主从同步时延（比如1s）”,然后读的时候先判断cache有没有，有则读主库，否则读从库 ref:数据库主从不一致，怎么解？ 数据库|">
+<meta name="twitter:title" content="thronbird&#39;s blog">
+<meta name="twitter:description" content="技术的宽度和深度plist-xml fastlane-gradle spring-guice rocketmq-kafka">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/03/数据库缓存一致性总结/">
+  <link rel="canonical" href="http://yoursite.com/技术的宽度和深度.html">
 
 
 
 
 
-  <title>数据库|缓存一致性总结 | thronbird's blog</title>
+  <title> | thronbird's blog</title>
   
 
 
@@ -220,157 +220,37 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/数据库缓存一致性总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thronbird">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thronbird's blog">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">数据库|缓存一致性总结</h1>
-        
+	<h1 class="post-title" itemprop="name headline"></h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:27:03+08:00">
-                2019-11-03
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <h3 id="数据库主从不一致解决方案："><a href="#数据库主从不一致解决方案：" class="headerlink" title="数据库主从不一致解决方案："></a>数据库主从不一致解决方案：</h3><p><strong>方案一：忽略</strong>–如果业务能够接受，别把系统架构搞得太复杂</p>
-<p><strong>方案二：强制读主</strong>–使用一个高可用主库提供数据库服务–过于粗暴</p>
-<p><strong>方案三：选择性读主</strong>–写主库时将哪个库，哪个表，哪个主键三个信息拼装一个key设置到cache里，这条记录的超时时间，设置为“主从同步时延（比如1s）”,然后读的时候先判断cache有没有，有则读主库，否则读从库</p>
-<p>ref:<a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961330&amp;idx=1&amp;sn=4bdbada3b26d4fc2fc505f7a0f2ad7c4&amp;chksm=bd2d022e8a5a8b38e59f0dfffba7ca407fe8711644b3794832572dd822c665205bb820cdddf7&amp;scene=21" target="_blank" rel="noopener">数据库主从不一致，怎么解？</a></p>
-<h3 id="数据库-缓存一致性解决方案："><a href="#数据库-缓存一致性解决方案：" class="headerlink" title="数据库|缓存一致性解决方案："></a>数据库|缓存一致性解决方案：</h3><p>Cache Aside Pattern:</p>
-<p><strong>查询</strong>：cache-》如果没有则查询数据库 -》放回cache </p>
-<p><strong>更新</strong>：更新数据库-》删除缓存<br>(其实删除缓存，而不是更新缓存，就是一个 lazy 计算的思想，不要每次都重新做复杂的计算，不管它会不会用到，而是让它到需要被使用的时候再重新计算。像 mybatis，hibernate，都有懒加载思想)</p>
-<p>1.防止读写并发导致数据库和缓存不一致的情况（线程1更新db为x-》线程2更新db为y-》线程2更新缓存为y-线程1更新缓存为y===》db和缓存不一致）</p>
-<p>2.在复杂点的缓存场景，缓存不单单是数据库中直接取出来的值。比如可能更新了某个表的一个字段，然后其对应的缓存，是需要查询另外两个表的数据并进行运算，才能计算出缓存最新的值的。</p>
-<p>PS:特殊情况下：读写并发则不可行（线程1读缓存（miss）=》线程1读数据库=&gt;线程2写数据库=》线程2使缓存失效=》线程1放入老数据库的数据） 不过概率极低，写db比读要慢</p>
-<p><strong>但如果删除缓存失败就会导致数据库和缓存不一致了==&gt;(<a href="http://www.jintiankansha.me/t/jmm4fB2a8S" target="_blank" rel="noopener">http://www.jintiankansha.me/t/jmm4fB2a8S</a>)<br>(<a href="http://www.jintiankansha.me/t/0bKZVSdist" target="_blank" rel="noopener">http://www.jintiankansha.me/t/0bKZVSdist</a>)</strong></p>
-<ul>
-<li>延时双删(删缓存|删数据库|睡眠|再删) </li>
-<li>订阅mysql binlog更新缓存数据</li>
-<li>更新请求放入JVM队列排序 读请求循环判断是否已经更新</li>
-</ul>
+      <div class="post-body">
+        
+        
+          <h3 id="技术的宽度和深度"><a href="#技术的宽度和深度" class="headerlink" title="技术的宽度和深度"></a>技术的宽度和深度</h3><p>plist-xml</p>
+<p>fastlane-gradle</p>
+<p>spring-guice</p>
+<p>rocketmq-kafka</p>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/11/03/Kotlin官方文档摘录/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/03/深入理解java虚拟机笔记/" rel="prev" title="深入理解 JVM">
-                深入理解 JVM <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -465,7 +345,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库主从不一致解决方案："><span class="nav-number">1.</span> <span class="nav-text">数据库主从不一致解决方案：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库-缓存一致性解决方案："><span class="nav-number">2.</span> <span class="nav-text">数据库|缓存一致性解决方案：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术的宽度和深度"><span class="nav-number">1.</span> <span class="nav-text">技术的宽度和深度</span></a></li></ol></div>
             
 
           </div>
