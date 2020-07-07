@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基础概念 数据结构是为算法服务的，算法要作用在特定的数据结构之上。数据结构是静态的，它只是组织数据的一种方式。如果不在它的基础上操作、构建算法，孤立存在的数据结构就是没用的。 因此，我们无法孤立数据结构来讲算法，也无法孤立算法来讲数据结构。比如，因为数组具有随机访问的特点，常用的二分查找算法需要用数组来存储数据。但如果 我们选择链表这种数据结构，二分查找算法就无法工作了，因为链表并不支持随机访问。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm-wangzhen">
+<meta property="og:url" content="http://yoursite.com/2020/05/02/Algorithm-wangzhen/index.html">
+<meta property="og:site_name" content="thronbird&#39;s blog">
+<meta property="og:description" content="基础概念 数据结构是为算法服务的，算法要作用在特定的数据结构之上。数据结构是静态的，它只是组织数据的一种方式。如果不在它的基础上操作、构建算法，孤立存在的数据结构就是没用的。 因此，我们无法孤立数据结构来讲算法，也无法孤立算法来讲数据结构。比如，因为数组具有随机访问的特点，常用的二分查找算法需要用数组来存储数据。但如果 我们选择链表这种数据结构，二分查找算法就无法工作了，因为链表并不支持随机访问。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2020/05/02/Algorithm-wangzhen/image-20200502150250211.png">
+<meta property="og:updated_time" content="2020-05-05T02:33:54.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Algorithm-wangzhen">
+<meta name="twitter:description" content="基础概念 数据结构是为算法服务的，算法要作用在特定的数据结构之上。数据结构是静态的，它只是组织数据的一种方式。如果不在它的基础上操作、构建算法，孤立存在的数据结构就是没用的。 因此，我们无法孤立数据结构来讲算法，也无法孤立算法来讲数据结构。比如，因为数组具有随机访问的特点，常用的二分查找算法需要用数组来存储数据。但如果 我们选择链表这种数据结构，二分查找算法就无法工作了，因为链表并不支持随机访问。">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/02/Algorithm-wangzhen/image-20200502150250211.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/02/Algorithm-wangzhen/">
+
+
+
+
+
+  <title>Algorithm-wangzhen | thronbird's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">thronbird's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/Algorithm-wangzhen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="thronbird">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="thronbird's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Algorithm-wangzhen</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-02T13:56:09+08:00">
+                2020-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><blockquote>
+<p>数据结构是为算法服务的，算法要作用在特定的数据结构之上。数据结构是静态的，它只是组织数据的一种方式。如果不在它的基础上操作、构建算法，孤立存在的数据结构就是没用的。</p>
+<p>因此，我们无法孤立数据结构来讲算法，也无法孤立算法来讲数据结构。比如，因为数组具有随机访问的特点，常用的二分查找算法需要用数组来存储数据。但如果 我们选择链表这种数据结构，二分查找算法就无法工作了，因为链表并不支持随机访问。</p>
+</blockquote>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><blockquote>
+<p>复杂度分析是整个算法学习的精髓，只要掌握了它，数据结构和算法的内容基本上就掌握了一半。</p>
+</blockquote>
+<blockquote>
+<p>加法法则：总复杂度等于量级最大的那段代码的复杂度</p>
+<p>乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</p>
+</blockquote>
+<blockquote>
+<p>O(1)、O(logn)、O(n)、O(nlogn)、O(n 2 )</p>
+<p><img src="/2020/05/02/Algorithm-wangzhen/image-20200502150250211.png" alt="image-20200502150250211" style="zoom:50%;"></p>
+</blockquote>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><blockquote>
+<p>概念：数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型 的数据。（除了数组，链表、队列、栈等也是线性表结 构。）</p>
+<p>特性：随机访问，根据下标随机访问的时间复杂度为 O(1)。</p>
+</blockquote>
+<blockquote>
+<p>插入优化：在一个位置插入元素，如果不要求顺序，则直接替换原位置元素（原数扔到数组末尾）</p>
+<p>删除优化：每次的删除操作并不是真正地搬移数据，只是记录数据已经被删除。当数组没有更多空间存 储数据时，我们再触发执行一次真正的删除操作。（<strong>JVM 标记清除垃圾回收算法</strong>）</p>
+</blockquote>
+<blockquote>
+<p>VS ArrayList容器：</p>
+<p>数组可以存储基本类型，ArrayList则会自动装箱拆箱有一定性能损耗，业务开发可以直接用ArrayList，支持动态扩容，api完善，封装了数组操作细节，追求性能的网络框架可能会用数组。</p>
+</blockquote>
+<blockquote>
+<p>为何下标从0开始：下标是数组内存地址偏移量</p>
+</blockquote>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><blockquote>
+<p>单链表  ：尾节点指向null</p>
+<p>循环链表 ：尾结点指针是指向链表的头结点，环形结构</p>
+<p>双向链表：每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点</p>
+<p>双向循环链表（LinkedHashMap）：在链表的某个指定结点前面插入一个结点，双向链表比单链表有很大的 优势。双向链表可以在 O(1) 时间复杂度搞定，而单向链表需要 O(n) 的时间复杂度。对于一个有序链表，双向链表的按值查询的效率也要比单 链表高一些。因为，我们可以记录上次查找的位置 p，每次查询时，根据要查找的值与 p 的大小关系，决定是往前还是往后查找，所以平均只需要查找一半的数据。</p>
+</blockquote>
+<blockquote>
+<p>Vs 数组</p>
+<p>链表通过指将一组零散的内存块串 联起来使用，无需连续的存储空间。数组简单易用，在实现上使用的是连续的内存空间，可以借助 CPU 的缓存机制，预读数组 中的数据，所以访问效率更高。而链表在内存中并不是连续存储，所以对 CPU 缓存不友 好，没办法有效预读。</p>
+<p>数组的缺点是大小固定，一经声明就要占用整块连续内存空间。如果声明的数组过大，系统 可能没有足够的连续内存空间分配给它，导致“内存不足（out of memory）”，如果你的代码对内存的使用非常苛刻，那数组就更适合你。因为链表中的每个结 点都需要消耗额外的存储空间去存储一份指向下一个结点的指针，所以内存消耗会翻倍。而 且，对链表进行频繁的插入、删除操作，还会导致频繁的内存申请和释放，容易造成内存碎 片，如果是 Java 语言，就有可能会导致频繁的 GC（Garbage Collection，垃圾回收）。</p>
+<p>链表本身没有大小的限制，天然地支持动态扩容，这也是它与数组最大的区别。</p>
+</blockquote>
+<blockquote>
+<p>Exercise（<strong>写链表是最考察验逻辑思维能力的。链表代码到处都是指针的操作、边界条件的处理，可以看出一个人写代码是否 够细心，考虑问题是否全面，思维是否缜密</strong>）:<br>单链表反转|链表中环的检测|两个有序的链表合并|删除链表倒数第 n 个结点|求链表的中间结点</p>
+<p>举例画图法：找一个具体的例子，把它画在纸上，释放一些脑容量，留更多的给逻辑思考</p>
+</blockquote>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><blockquote>
+<p>VS数组|链表: </p>
+<p>栈可以用数组（顺序栈）|链表（链式栈）实现，是对细节的进一步封装，在特定场景（只涉及在一端插入和删除数据，并且满足后进先出、先进后出的特性）下比较适合用。</p>
+<p>尽管数组|链表可以取代栈，但是他们暴露了太多接口，不可控。</p>
+</blockquote>
+<blockquote>
+<p>场景：</p>
+<p>操作系统分配给线程的栈 </p>
+<p>表达式求值的编译原理（操作数栈+运算符栈）</p>
+<p>括号匹配</p>
+<p>浏览器前进后退（两个栈，后退的地址放入另一个栈）</p>
+</blockquote>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><blockquote>
+<p>实现：基于数组（顺序队列） | 链表（链式队列）实现。</p>
+<p>原理： head指针+tail指针（指针在java中即是引用）</p>
+<p>基于链表可以实现支持无限排队的无界队列（unbounded queue）</p>
+<p>基于数组实现的有界队列（bounded queue）</p>
+<p>并发队列：cas操作（入队前获取tail位置，入队的时候比较是否发生变化）</p>
+</blockquote>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><blockquote>
+<p>满足下面条件即可使用递归：</p>
+<ul>
+<li>一个问题的解可以分解为几个子问题的解</li>
+<li>这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样</li>
+<li>存在递归终止条件</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/15/技术的宽度和深度/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/03/Lang-C/" rel="prev" title="Lang_C">
+                Lang_C <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">thronbird</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂度分析"><span class="nav-number">2.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">3.0.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">3.0.2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈"><span class="nav-number">3.0.3.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">3.0.4.</span> <span class="nav-text">队列</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">4.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归"><span class="nav-number">4.0.1.</span> <span class="nav-text">递归</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">thronbird</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
