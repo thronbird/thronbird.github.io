@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
+<meta name="description" content="MQ压测  如何压测：应该在TPS和机器的cpu负载、内存使用率、jvm gc频率、磁盘io负载、网络流量负载 之间取得一个平衡，尽量让 TPS尽可能的提高，同时让机器的各项资源负载不要太高。  实际压测过程：采用几台机器开启大量线程并发读写消息，然后观察TPS、cpu load（使用top命令）、内存使用率（使用free命 令）、jvm gc频率（使用jstat命令）、磁盘io负载（使用top">
 <meta property="og:type" content="article">
-<meta property="og:title" content="thronbird&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2019/11/03/并发编程总结/index.html">
+<meta property="og:title" content="MIDDLE_WARE">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/MIDDLE-WARE/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
+<meta property="og:description" content="MQ压测  如何压测：应该在TPS和机器的cpu负载、内存使用率、jvm gc频率、磁盘io负载、网络流量负载 之间取得一个平衡，尽量让 TPS尽可能的提高，同时让机器的各项资源负载不要太高。  实际压测过程：采用几台机器开启大量线程并发读写消息，然后观察TPS、cpu load（使用top命令）、内存使用率（使用free命 令）、jvm gc频率（使用jstat命令）、磁盘io负载（使用top">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/11/03/并发编程总结/Users/79343/AppData/Roaming/Typora/typora-user-images/1563699451590.png">
-<meta property="og:updated_time" content="2019-07-22T01:01:48.000Z">
+<meta property="og:updated_time" content="2020-07-15T02:44:28.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="thronbird&#39;s blog">
-<meta name="twitter:description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
-<meta name="twitter:image" content="http://yoursite.com/2019/11/03/并发编程总结/Users/79343/AppData/Roaming/Typora/typora-user-images/1563699451590.png">
+<meta name="twitter:title" content="MIDDLE_WARE">
+<meta name="twitter:description" content="MQ压测  如何压测：应该在TPS和机器的cpu负载、内存使用率、jvm gc频率、磁盘io负载、网络流量负载 之间取得一个平衡，尽量让 TPS尽可能的提高，同时让机器的各项资源负载不要太高。  实际压测过程：采用几台机器开启大量线程并发读写消息，然后观察TPS、cpu load（使用top命令）、内存使用率（使用free命 令）、jvm gc频率（使用jstat命令）、磁盘io负载（使用top">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/03/并发编程总结/">
+  <link rel="canonical" href="http://yoursite.com/2020/07/15/MIDDLE-WARE/">
 
 
 
 
 
-  <title> | thronbird's blog</title>
+  <title>MIDDLE_WARE | thronbird's blog</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/并发编程总结/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/MIDDLE-WARE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thronbird">
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">MIDDLE_WARE</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:23:01+08:00">
-                2019-11-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-15T00:42:15+08:00">
+                2020-07-15
               </time>
             
 
@@ -301,29 +299,12 @@
       
 
       
-        <p>Volatile相关：</p>
-<ul>
-<li>Volatile实现底层原理：利用cpu的lock指令</li>
-<li><p><img src="/2019/11/03/并发编程总结/Users\79343\AppData\Roaming\Typora\typora-user-images\1563699451590.png" alt="1563699451590"></p>
-</li>
-<li><p>Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）</p>
-</li>
+        <ul>
+<li>MQ压测</li>
 </ul>
-<p>LockSupport.park|unpark(Threadxx)线程也可实现线程调度</p>
-<p>锁：</p>
-<p>•偏向锁</p>
-<p>•轻量级锁</p>
-<p>•重量级锁</p>
-<p>•重入锁</p>
-<p>•自旋锁</p>
-<p>•共享锁</p>
-<p>•独占锁</p>
-<p>•排他锁</p>
-<p>•读写锁</p>
-<p>•公平锁</p>
-<p>•非公平锁</p>
-<p>•死锁</p>
-<p>•活锁</p>
+<p>如何压测：应该在TPS和机器的cpu负载、内存使用率、jvm gc频率、磁盘io负载、网络流量负载 之间取得一个平衡，尽量让 TPS尽可能的提高，同时让机器的各项资源负载不要太高。 </p>
+<p>实际压测过程：采用几台机器开启大量线程并发读写消息，然后观察TPS、cpu load（使用top命令）、内存使用率（使用free命 令）、jvm gc频率（使用jstat命令）、磁盘io负载（使用top命令）、网卡流量负载（使用sar命令 sar –n DEV 1 4），不断增加机器和线程，让TPS不 断提升上去，同时观察各项资源负载是否过高。 </p>
+<p>生产集群规划：根据公司的后台整体QPS来定，稍微多冗余部署一些机器即可，实际部署生产环境的集群时，使用高配置物理机，同时 合理调整os内核参数、jvm参数、中间件核心参数，如此即可</p>
 
       
     </div>
@@ -348,8 +329,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/03/线程通信总结/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2020/07/14/SYSTEM-DESIGN/" rel="next" title="SYSTEM_DESIGN">
+                <i class="fa fa-chevron-left"></i> SYSTEM_DESIGN
               </a>
             
           </div>
@@ -357,10 +338,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/03/zookeeper相关总结/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

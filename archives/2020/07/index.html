@@ -79,19 +79,13 @@
 
 
 
-<meta name="description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="thronbird&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2019/11/03/并发编程总结/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/11/03/并发编程总结/Users/79343/AppData/Roaming/Typora/typora-user-images/1563699451590.png">
-<meta property="og:updated_time" content="2019-07-22T01:01:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="thronbird&#39;s blog">
-<meta name="twitter:description" content="Volatile相关：  Volatile实现底层原理：利用cpu的lock指令   Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）   LockSupport.park|unpark(Threadxx)线程也可实现线程调度 锁： •偏向锁 •轻量级锁 •重量级锁 •重入锁 •自旋锁 •共享锁 •独占锁 •排他锁 •读写锁 •公平锁 •非公平锁 •死锁 •活">
-<meta name="twitter:image" content="http://yoursite.com/2019/11/03/并发编程总结/Users/79343/AppData/Roaming/Typora/typora-user-images/1563699451590.png">
 
 
 
@@ -121,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/03/并发编程总结/">
+  <link rel="canonical" href="http://yoursite.com/archives/2020/07/">
 
 
 
 
 
-  <title> | thronbird's blog</title>
+  <title>Archive | thronbird's blog</title>
   
 
 
@@ -146,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,167 +214,106 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+         
+        
+        OK! 32 posts in total. Keep on posting.
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2020">2020</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/并发编程总结/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="thronbird">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="thronbird's blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline"></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2020/07/15/MIDDLE-WARE/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">MIDDLE_WARE</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T22:23:01+08:00">
-                2019-11-03
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2020-07-15T00:42:15+08:00" content="2020-07-15">
+          07-15
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>Volatile相关：</p>
-<ul>
-<li>Volatile实现底层原理：利用cpu的lock指令</li>
-<li><p><img src="/2019/11/03/并发编程总结/Users\79343\AppData\Roaming\Typora\typora-user-images\1563699451590.png" alt="1563699451590"></p>
-</li>
-<li><p>Volatile也可以控制线程执行顺序（利用一个volatile boolean变量）</p>
-</li>
-</ul>
-<p>LockSupport.park|unpark(Threadxx)线程也可实现线程调度</p>
-<p>锁：</p>
-<p>•偏向锁</p>
-<p>•轻量级锁</p>
-<p>•重量级锁</p>
-<p>•重入锁</p>
-<p>•自旋锁</p>
-<p>•共享锁</p>
-<p>•独占锁</p>
-<p>•排他锁</p>
-<p>•读写锁</p>
-<p>•公平锁</p>
-<p>•非公平锁</p>
-<p>•死锁</p>
-<p>•活锁</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/11/03/线程通信总结/" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/03/zookeeper相关总结/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2020/07/14/SYSTEM-DESIGN/" itemprop="url">
+              
+                <span itemprop="name">SYSTEM_DESIGN</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2020-07-14T21:53:29+08:00" content="2020-07-14">
+          07-14
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -388,10 +321,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -588,10 +517,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
