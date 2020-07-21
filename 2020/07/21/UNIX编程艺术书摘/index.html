@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="操作系统内核是应用程序和硬件之间的媒介，它提供三个抽象  文件是对IO设备的抽象（网络也算一种IO设备） 虚拟内存是对主存和硬盘的抽象 进程是对处理器、主存和IO设备的抽象容器 虚拟机是对整个计算机的抽象  指令集提供了对实际处理器硬件的抽象，使用这个抽象，机器程序表现的就好像是运行在一次只执行一条指令的处理器上，（保证了有序性）">
+<meta name="description" content="mechanism, not policy    致力于提供一套 机制 而非 策略，行为最终逻辑被推到使用端，因而可以支持眼花缭乱的定制功能，缺点是策略的缺失需要用户自己设置。但优势在于：策略相对短寿 机制才会长存。  跨平台可移植的开放 Unix API 硬件无关标准  程序接口小巧 简洁 正交  自下而上 而非自上而下的设计，注重实效，立足于丰富的经验  每个程序只做一件事，如果有新任务就重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《深入理解计算机系统》笔记">
-<meta property="og:url" content="http://yoursite.com/2020/03/14/《深入理解计算机系统》笔记/index.html">
+<meta property="og:title" content="UNIX编程艺术书摘">
+<meta property="og:url" content="http://yoursite.com/2020/07/21/UNIX编程艺术书摘/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="操作系统内核是应用程序和硬件之间的媒介，它提供三个抽象  文件是对IO设备的抽象（网络也算一种IO设备） 虚拟内存是对主存和硬盘的抽象 进程是对处理器、主存和IO设备的抽象容器 虚拟机是对整个计算机的抽象  指令集提供了对实际处理器硬件的抽象，使用这个抽象，机器程序表现的就好像是运行在一次只执行一条指令的处理器上，（保证了有序性）">
+<meta property="og:description" content="mechanism, not policy    致力于提供一套 机制 而非 策略，行为最终逻辑被推到使用端，因而可以支持眼花缭乱的定制功能，缺点是策略的缺失需要用户自己设置。但优势在于：策略相对短寿 机制才会长存。  跨平台可移植的开放 Unix API 硬件无关标准  程序接口小巧 简洁 正交  自下而上 而非自上而下的设计，注重实效，立足于丰富的经验  每个程序只做一件事，如果有新任务就重">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/Users/mercy/Library/Application%20Support/typora-user-images/image-20200314204703504.png">
-<meta property="og:updated_time" content="2020-03-14T15:03:49.524Z">
+<meta property="og:updated_time" content="2020-07-21T12:59:05.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《深入理解计算机系统》笔记">
-<meta name="twitter:description" content="操作系统内核是应用程序和硬件之间的媒介，它提供三个抽象  文件是对IO设备的抽象（网络也算一种IO设备） 虚拟内存是对主存和硬盘的抽象 进程是对处理器、主存和IO设备的抽象容器 虚拟机是对整个计算机的抽象  指令集提供了对实际处理器硬件的抽象，使用这个抽象，机器程序表现的就好像是运行在一次只执行一条指令的处理器上，（保证了有序性）">
-<meta name="twitter:image" content="http://yoursite.com/Users/mercy/Library/Application%20Support/typora-user-images/image-20200314204703504.png">
+<meta name="twitter:title" content="UNIX编程艺术书摘">
+<meta name="twitter:description" content="mechanism, not policy    致力于提供一套 机制 而非 策略，行为最终逻辑被推到使用端，因而可以支持眼花缭乱的定制功能，缺点是策略的缺失需要用户自己设置。但优势在于：策略相对短寿 机制才会长存。  跨平台可移植的开放 Unix API 硬件无关标准  程序接口小巧 简洁 正交  自下而上 而非自上而下的设计，注重实效，立足于丰富的经验  每个程序只做一件事，如果有新任务就重">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/14/《深入理解计算机系统》笔记/">
+  <link rel="canonical" href="http://yoursite.com/2020/07/21/UNIX编程艺术书摘/">
 
 
 
 
 
-  <title>《深入理解计算机系统》笔记 | thronbird's blog</title>
+  <title>UNIX编程艺术书摘 | thronbird's blog</title>
   
 
 
@@ -234,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/14/《深入理解计算机系统》笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/UNIX编程艺术书摘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="thronbird">
@@ -251,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《深入理解计算机系统》笔记</h1>
+          <h1 class="post-title" itemprop="name headline">UNIX编程艺术书摘</h1>
         
 
         <div class="post-meta">
@@ -263,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-14T20:47:43+08:00">
-                2020-03-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-21T19:51:05+08:00">
+                2020-07-21
               </time>
             
 
@@ -301,15 +299,43 @@
       
 
       
-        <p>操作系统内核是应用程序和硬件之间的媒介，它提供三个抽象</p>
-<ul>
-<li>文件是对IO设备的抽象（网络也算一种IO设备）</li>
-<li>虚拟内存是对主存和硬盘的抽象</li>
-<li>进程是对处理器、主存和IO设备的抽象容器</li>
-<li>虚拟机是对整个计算机的抽象</li>
+        <ul>
+<li><p>mechanism, not policy    致力于提供一套 机制 而非 策略，行为最终逻辑被推到使用端，因而可以支持眼花缭乱的定制功能，缺点是策略的缺失需要用户自己设置。但优势在于：策略相对短寿 机制才会长存。</p>
+</li>
+<li><p>跨平台可移植的开放 Unix API 硬件无关标准</p>
+</li>
+<li><p>程序接口小巧 简洁 正交</p>
+</li>
+<li><p>自下而上 而非自上而下的设计，注重实效，立足于丰富的经验</p>
+</li>
+<li><p>每个程序只做一件事，如果有新任务就重新开始而不是在原程序增加新功能</p>
+</li>
+<li><p>假定每个程序的输出都会成为另一个程序的输入，输出中不要有无关信息干扰（管道设计）</p>
+</li>
+<li><p>程序要能协作，要能处理文本流（最通用的接口）</p>
+</li>
+<li><p><strong>数据压倒一切</strong>，编程的核心是数据结构而非算法，选择了正确的数据结构一切都井井有条那么正确的算法也就不言自明</p>
+</li>
 </ul>
-<p>指令集提供了对实际处理器硬件的抽象，使用这个抽象，机器程序表现的就好像是运行在一次只执行一条指令的处理器上，（保证了有序性）</p>
-<p><img src="/Users/mercy/Library/Application Support/typora-user-images/image-20200314204703504.png" alt="image-20200314204703504"></p>
+<h3 id="原则-KISS"><a href="#原则-KISS" class="headerlink" title="原则-KISS"></a>原则-KISS</h3><ol>
+<li><strong>模块原则：使用简洁的接口拼合简单的部件</strong>–计算机编程的本质是控制复杂度</li>
+<li><strong>清晰原则：清晰生于机巧</strong>–为了一丁点性能而降低可读性增加软件复杂性得不偿失</li>
+<li><strong>组合原则：设计时考虑拼接组合</strong>–多数程序接收文本流输入处理成文本流输出（简单过滤器模式）</li>
+<li><strong>分离原则：策略同机制分离，接口同引擎分离</strong>–策略的变化远远快于机制，eg:前端实现策略后端实现机制的双进程结构</li>
+<li><strong>简洁原则：设计要简洁，复杂度能低则低</strong></li>
+<li><strong>吝啬原则：除非却无他法，不要编写庞大的程序</strong></li>
+<li><strong>透明性原则：设计要可见，以便审查和调试</strong>–透明性（一目了然）|显见性（监视工具、调试脚本）</li>
+<li><strong>健壮原则：健壮源于透明与简洁</strong>–避免出现特例，简洁+透明=》健壮（程序模块化是方法之一）</li>
+<li><strong>表示原则：把知识叠入数据以求逻辑质朴而健壮</strong>–数据比编程逻辑更容易驾驭(eg:数组&gt;switch)，代码复杂度尽力转移到数据上</li>
+<li><strong>通俗原则：接口设计避免标新立异</strong>–最少惊奇原则</li>
+<li><strong>缄默原则：如果一个程序没什么好说的，就沉默</strong>–仅仅输出重要的信息,用户注意力是有限的</li>
+<li><strong>补救原则：出现异常时，马上退出并给出足够多的错误信息</strong>–宽容的收,谨慎的发,尽可能理解不规范输入并要么退出要么给严谨的输出</li>
+<li><strong>经济原则：宁花机器一分，不花程序员一秒</strong>–采用高级语言如python\java\shell</li>
+<li><strong>生成原则：避免手工hack，尽量编写程序去生成程序</strong>– makefile|dao层代码生成器</li>
+<li><strong>优化原则：雕琢前要先有圆形，跑之前先学会走</strong></li>
+<li><strong>多样性原则：绝不相信所谓”不二法门“的断言</strong></li>
+<li><strong>扩展原则：设计着眼未来，未来总比预想来的快</strong>–充分的自描述性</li>
+</ol>
 
       
     </div>
@@ -334,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/14/《企业应用架构模式》笔记/" rel="next" title="《企业应用架构模式》笔记">
-                <i class="fa fa-chevron-left"></i> 《企业应用架构模式》笔记
+              <a href="/2020/07/15/MIDDLE-WARE/" rel="next" title="MIDDLE_WARE">
+                <i class="fa fa-chevron-left"></i> MIDDLE_WARE
               </a>
             
           </div>
@@ -343,10 +369,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/14/《敏捷软件开发》笔记/" rel="prev" title="《敏捷软件开发》笔记">
-                《敏捷软件开发》笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -398,8 +420,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -441,6 +472,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原则-KISS"><span class="nav-number">1.</span> <span class="nav-text">原则-KISS</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
