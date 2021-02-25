@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Interface namesBy convention, one-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: Reader, Writer, Formatter, CloseNotifier etc.">
+<meta name="description" content="语言机制内存分配 span Gmp调度模型 chan  同步的写法写异步 语法 map 类型需要make才能用是因为map是引用类型，默认的零值是nil  引用类型（chan、map、string、slice）方法为值类型接收即可（值本身即是引用），结构类型一般方法用指针类型接收（一般需要修改原值，Time这种创建之后不变的类型例外，判断是用值还是指针方法依据是该类的本质）  命名规范 By co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GO_LANG">
 <meta property="og:url" content="http://yoursite.com/2020/06/28/GO-LANG/index.html">
 <meta property="og:site_name" content="thronbird&#39;s blog">
-<meta property="og:description" content="Interface namesBy convention, one-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: Reader, Writer, Formatter, CloseNotifier etc.">
+<meta property="og:description" content="语言机制内存分配 span Gmp调度模型 chan  同步的写法写异步 语法 map 类型需要make才能用是因为map是引用类型，默认的零值是nil  引用类型（chan、map、string、slice）方法为值类型接收即可（值本身即是引用），结构类型一般方法用指针类型接收（一般需要修改原值，Time这种创建之后不变的类型例外，判断是用值还是指针方法依据是该类的本质）  命名规范 By co">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-28T09:53:44.936Z">
+<meta property="og:updated_time" content="2020-12-31T06:34:18.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GO_LANG">
-<meta name="twitter:description" content="Interface namesBy convention, one-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: Reader, Writer, Formatter, CloseNotifier etc.">
+<meta name="twitter:description" content="语言机制内存分配 span Gmp调度模型 chan  同步的写法写异步 语法 map 类型需要make才能用是因为map是引用类型，默认的零值是nil  引用类型（chan、map、string、slice）方法为值类型接收即可（值本身即是引用），结构类型一般方法用指针类型接收（一般需要修改原值，Time这种创建之后不变的类型例外，判断是用值还是指针方法依据是该类的本质）  命名规范 By co">
 
 
 
@@ -299,7 +299,21 @@
       
 
       
-        <h3 id="Interface-names"><a href="#Interface-names" class="headerlink" title="Interface names"></a>Interface names</h3><p>By convention, one-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: <code>Reader</code>, <code>Writer</code>, <code>Formatter</code>, <code>CloseNotifier</code> etc.</p>
+        <h2 id="语言机制"><a href="#语言机制" class="headerlink" title="语言机制"></a>语言机制</h2><p>内存分配 span</p>
+<p>Gmp调度模型</p>
+<p>chan  同步的写法写异步</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><ul>
+<li>map 类型需要make才能用是因为map是引用类型，默认的零值是nil </li>
+<li>引用类型（chan、map、string、slice）方法为值类型接收即可（值本身即是引用），结构类型一般方法用指针类型接收（一般需要修改原值，Time这种创建之后不变的类型例外，判断是用值还是指针方法依据是该类的本质）</li>
+</ul>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><ul>
+<li>By convention, one-method interfaces are named by the method name plus an -er suffix or similar modification to construct an agent noun: <code>Reader</code>, <code>Writer</code>, <code>Formatter</code>, <code>CloseNotifier</code> etc.</li>
+</ul>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><ul>
+<li>bee工具下载： GO111MODULE=on go get -u <a href="mailto:github.com/beego/bee@v1.10.0" target="_blank" rel="noopener">github.com/beego/bee@v1.10.0</a></li>
+<li>bee api根据注解生成commentsRouter不生效：把新增的接口定义去掉，重新生成一遍，然后加上再重新生成</li>
+<li>版本不一致：多个gopath最好去掉，保持一个gopath，方便管理</li>
+</ul>
 
       
     </div>
@@ -413,7 +427,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -450,7 +464,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Interface-names"><span class="nav-number">1.</span> <span class="nav-text">Interface names</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#语言机制"><span class="nav-number">1.</span> <span class="nav-text">语言机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名规范"><span class="nav-number">3.</span> <span class="nav-text">命名规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">4.</span> <span class="nav-text">FAQ</span></a></li></ol></div>
             
 
           </div>
@@ -470,7 +484,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
